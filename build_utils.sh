@@ -360,6 +360,7 @@ function build_system_dlkm() {
   # signed and stripped modules are in MODULES_STAGING_DIR.
   if [[ ${SYSTEM_DLKM_RE_SIGN:-1} == "1" ]]; then
     for module in $(find ${SYSTEM_DLKM_STAGING_DIR} -type f -name "*.ko"); do
+      LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:prebuilts/kernel-build-tools/linux-x86/lib64" \
       ${OUT_DIR}/scripts/sign-file sha1 \
       ${OUT_DIR}/certs/signing_key.pem \
       ${OUT_DIR}/certs/signing_key.x509 "${module}"
