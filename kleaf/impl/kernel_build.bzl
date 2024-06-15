@@ -1493,6 +1493,7 @@ def _build_main_action(
     command += """
            {kbuild_mixed_tree_cmd}
          # Actual kernel build
+           export HOSTLDFLAGS="${{HOSTLDFLAGS}} -Wl,-rpath,$(realpath prebuilts/kernel-build-tools/linux-x86/lib64 --relative-to ${{OUT_DIR}})"
            {interceptor_command_prefix} make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} {make_goals}
          # Install modules
            {modinst_cmd}
