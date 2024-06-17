@@ -16,4 +16,7 @@
 
 cd /b/
 
-tools/bazel build //common:kernel_aarch64
+PATH=/l/bin tools/bazel run \
+  --incompatible_hermetic_actions \
+  --config=stamp \
+  //common:kernel_aarch64_dist
