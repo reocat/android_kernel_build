@@ -16,4 +16,4 @@
 
 cd /b/
 
-tools/bazel build //common:kernel_aarch64
+PATH=/l tools/bazel build --action_env=PATH //common:kernel_aarch64
