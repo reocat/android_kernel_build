@@ -1,0 +1,199 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb7d4a2c_7d0fd02b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-18T18:55:48Z",
+      "side": 1,
+      "message": "Not sure if the presubmit is still failing the integration tests, so PR+1 to verify it now.",
+      "revId": "dfa958d8a7aa3a3e67ce00c82da4fb5b15f2e67c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9052fb3_c0a2d0ad",
+        "filename": "BUILD.bazel",
+        "patchSetId": 21
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-18T18:55:48Z",
+      "side": 1,
+      "message": "could this break `init_ddk_test`? since it uses a different import (`init`).",
+      "range": {
+        "startLine": 384,
+        "startChar": 14,
+        "endLine": 384,
+        "endChar": 19
+      },
+      "revId": "dfa958d8a7aa3a3e67ce00c82da4fb5b15f2e67c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06d77e86_970484f3",
+        "filename": "init/repo_wrapper.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-18T18:55:48Z",
+      "side": 1,
+      "message": "nit: Just curious why does this need to be passed if it\u0027s already part of the class?",
+      "range": {
+        "startLine": 47,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 35
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "394e04cc_1b46fb8b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "init/repo_wrapper.py",
+              "range": {
+                "startLine": 46,
+                "startChar": 0,
+                "endLine": 48,
+                "endChar": 0
+              },
+              "replacement": "        self._project_paths \u003d self._populate_kleaf_repo_manifest()\n"
+            },
+            {
+              "path": "init/repo_wrapper.py",
+              "range": {
+                "startLine": 80,
+                "startChar": 0,
+                "endLine": 82,
+                "endChar": 0
+              },
+              "replacement": "    def _populate_kleaf_repo_manifest(self) -\u003e list[pathlib.Path]:\n"
+            },
+            {
+              "path": "init/repo_wrapper.py",
+              "range": {
+                "startLine": 101,
+                "startChar": 0,
+                "endLine": 102,
+                "endChar": 0
+              },
+              "replacement": "        kleaf_repo_rel \u003d self.kleaf_repo.relative_to(self._superproject_root)\n"
+            },
+            {
+              "path": "init/repo_wrapper.py",
+              "range": {
+                "startLine": 103,
+                "startChar": 0,
+                "endLine": 104,
+                "endChar": 0
+              },
+              "replacement": "        with open(self._superproject_root / f\".repo/manifests/{_KLEAF_MANIFEST}\",\n"
+            }
+          ]
+        }
+      ],
+      "revId": "dfa958d8a7aa3a3e67ce00c82da4fb5b15f2e67c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78cad14b_4f7e0097",
+        "filename": "init/repo_wrapper.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-18T18:55:48Z",
+      "side": 1,
+      "message": "nit: I think the integration test uses `\"no\"` so maybe one should be updated.",
+      "range": {
+        "startLine": 144,
+        "startChar": 28,
+        "endLine": 144,
+        "endChar": 35
+      },
+      "revId": "dfa958d8a7aa3a3e67ce00c82da4fb5b15f2e67c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86ece233_a888d5b7",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-18T18:55:48Z",
+      "side": 1,
+      "message": "is this return intended?",
+      "range": {
+        "startLine": 656,
+        "startChar": 16,
+        "endLine": 656,
+        "endChar": 22
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9eaea939_14719c28",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/tests/integration_test/integration_test.py",
+              "range": {
+                "startLine": 656,
+                "startChar": 0,
+                "endLine": 657,
+                "endChar": 0
+              },
+              "replacement": "                return  # Skip the rest of the test.\n"
+            },
+            {
+              "path": "kleaf/tests/integration_test/integration_test.py",
+              "range": {
+                "startLine": 686,
+                "startChar": 0,
+                "endLine": 687,
+                "endChar": 0
+              },
+              "replacement": "                return  # Skip the rest of the test.\n"
+            },
+            {
+              "path": "kleaf/tests/integration_test/integration_test.py",
+              "range": {
+                "startLine": 1270,
+                "startChar": 0,
+                "endLine": 1271,
+                "endChar": 0
+              },
+              "replacement": "            return  # Skip the rest of the test.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "dfa958d8a7aa3a3e67ce00c82da4fb5b15f2e67c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
