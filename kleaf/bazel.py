@@ -851,6 +851,13 @@ async def run(command, env, epilog_coroutine, output_mutator):
         case 1: raise exceptions[0]
         case _: raise MultipleBazelWrapperException(exceptions)
 
+def _bazel_wrapper_main():
+    # <kleaf_repo_dir>/build/kernel/kleaf/bazel.py
+    kleaf_repo_dir = (
+        pathlib.Path(__file__).resolve().parent.parent.parent.parent)
+    return BazelWrapper(kleaf_repo_dir=kleaf_repo_dir,
+                        bazel_args=sys.argv[1:],
+                        env=os.environ).run()
+
 if __name__ == "__main__":
-    sys.exit(BazelWrapper(kleaf_repo_dir=pathlib.Path(sys.argv[1]),
-                          bazel_args=sys.argv[2:], env=os.environ).run())
+    sys.exit(_bazel_wrapper_main())
