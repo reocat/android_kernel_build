@@ -47,7 +47,10 @@ exports_files(
     ))
 
     for host_tool in repository_ctx.attr.host_tools:
-        repository_ctx.symlink(repository_ctx.which(host_tool), host_tool)
+        host_path = repository_ctx.which(host_tool)
+        if host_path == None:
+            fail("Missing host tool {}".format(host_tool))
+        repository_ctx.symlink(host_path, host_tool)
 
 # TODO(b/276493276): Hide this once workspace.bzl is deleted.
 kleaf_host_tools_repo = repository_rule(
