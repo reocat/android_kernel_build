@@ -10,6 +10,24 @@ hermeticity unless you also set up the build targets properly.
 
 Below are some tips to ensure hermeticity for your builds.
 
+## Enable --incompatible_hermetic_actions
+
+This is a [Bazel wrapper](../bazel.py) flag that does the following:
+- Modifies `PATH` to an auto-generated directory that contains a
+  limited list of tools:
+  - [_ACTION_HERMETIC_TOOLS](../bazel.py)
+  - [DEFAULT_HOST_TOOLS](../impl/default_host_tools.scl)
+- Sets `--action_env=PATH` so this `PATH` is used instead of the one
+  determined by Bazel (e.g. with
+  [--incompatible_strict_action_env](https://bazel.build/reference/command-line-reference#flag--incompatible_strict_action_env)).
+
+When this flag is enabled, hermeticity is enforced on
+actions agnostic to Bazel (e.g. those from bazel_skylib and
+rules_python).
+
+Even with the flag set, if your actions are built with Kleaf tooling, you are
+encouraged to use the hermetic toolchain. See [Custom rules](#custom-rules).
+
 ## Use hermetic\_genrule
 
 The command of the native
@@ -151,6 +169,9 @@ includes:
   * The script may also use `printf` etc. from the host machine if
     `--nokleaf_localversion`. See `scripts/setlocalversion`.
 
+`build/kernel/kleaf/bazel.sh` uses `readlink` from host for bootstrapping to
+determine its own path.
+
 All `ctx.actions.run_shell` uses a shell defined by Bazel, which is usually
 `/bin/bash`.
 
@@ -169,3 +190,12 @@ Updating the ABI definition uses the host executables in order to use `git`.
 If `--workaround_btrfs_b292212788` is set, `find` comes from the host machine.
 [See internal bug b/292212788](http://b/292212788), or
 [Bug 217681 - gen_kheaders.sh gets stuck in an infinite loop](https://bugzilla.kernel.org/show_bug.cgi?id=217681)
+
+If [`--incompatible_hermetic_actions`](#enable---incompatible_hermetic_actions)
+is not set:
+
+- `copy_file()` uses `cp`
+- `rules_python` uses `uname` during toolchain resolution
+- Host `python3` is needed to run any `py_binary` (
+  [reference](https://github.com/bazelbuild/bazel/issues/19355))
+- [workspace_status.sh](../workspace_status.sh) uses readlink.

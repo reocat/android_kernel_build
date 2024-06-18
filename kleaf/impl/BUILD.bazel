@@ -63,6 +63,7 @@ bzl_library(
         "declare_host_tools.bzl",
         "declare_kernel_prebuilts.bzl",
         "declare_toolchain_constants.bzl",
+        "default_host_tools.scl",
         "file.bzl",
         "file_selector.bzl",
         "gki_artifacts.bzl",
@@ -401,6 +402,12 @@ sh_binary(
     ],
     # All checkpatch rules from any package can see this
     visibility = ["//visibility:public"],
+)
+
+py_library(
+    name = "default_host_tools",
+    srcs = ["default_host_tools.py"],
+    visibility = ["//build/kernel/kleaf:__pkg__"],
 )
 
 kernel_platform_toolchain(
