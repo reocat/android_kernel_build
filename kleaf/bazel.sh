@@ -13,6 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-KLEAF_REPO_DIR=$($(dirname $(dirname $(readlink -f "$0")))/gettop.sh)
+# Use host readlink. b/348003050
+MYPATH=$(readlink -f "$0")
+MYDIR=${MYPATH%/*}
+KLEAF_REPO_DIR=${MYDIR%build/kernel/kleaf}
+KLEAF_REPO_DIR=${KLEAF_REPO_DIR%/}
 
-exec "$KLEAF_REPO_DIR"/prebuilts/build-tools/path/linux-x86/python3 $(dirname $(readlink -f "$0"))/bazel.py "$@"
+exec "$KLEAF_REPO_DIR"/prebuilts/build-tools/path/linux-x86/python3 "$MYDIR"/bazel.py "$@"
