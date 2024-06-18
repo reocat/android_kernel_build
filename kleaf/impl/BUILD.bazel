@@ -63,6 +63,7 @@ bzl_library(
         "declare_host_tools.bzl",
         "declare_kernel_prebuilts.bzl",
         "declare_toolchain_constants.bzl",
+        "default_host_tools.scl",
         "file.bzl",
         "file_selector.bzl",
         "gki_artifacts.bzl",
