@@ -23,6 +23,7 @@ import sys
 import textwrap
 from typing import BinaryIO, Generator, Tuple, Optional
 
+from impl.default_host_tools import DEFAULT_HOST_TOOLS
 from kleaf_help import KleafHelpPrinter, FLAGS_BAZEL_RC
 
 _BAZEL_REL_PATH = "prebuilts/kernel-build-tools/bazel/linux-x86_64/bazel"
@@ -40,6 +41,25 @@ _QUERY_ABI_TARGETS_ARG = 'kind("(update_source_file|abi_update) rule", //... exc
 
 _REPO_BOUNDARY_FILES = ("MODULE.bazel", "REPO.bazel", "WORKSPACE.bazel", "WORKSPACE")
 
+# Tools added to PATH so actions that does not explicitly
+# use hermetic toolchain still has some level of hermeticity. This is to cover
+# actions and rules out of our control, e.g. external deps.
+# Care must be taken when adding additional tools to this list.
+# Regular actions should explicitly use hermetic toolchain whenever
+# possible.
+_ACTION_HERMETIC_TOOLS = [
+    # for copy_file
+    "prebuilts/build-tools/path/linux-x86/cp",
+    # https://github.com/bazelbuild/bazel/issues/19355
+    "prebuilts/build-tools/path/linux-x86/python3",
+    # for rules_python toolchain resolution
+    "prebuilts/build-tools/path/linux-x86/uname",
+]
+_ACTION_EXTRA_HOST_TOOLS = [
+    # For workspace_status
+    "repo",
+    "git",
+]
 
 @dataclasses.dataclass
 class BazelWrapperException(Exception):
@@ -166,6 +186,7 @@ class BazelWrapper(KleafHelpPrinter):
         self._parse_command_args()
         self._add_extra_startup_options()
         self._rebuild_kleaf_help_args()
+        self._add_default_hermetic_path()
 
     @classmethod
     def _get_workspace_dir(cls):
@@ -360,6 +381,24 @@ class BazelWrapper(KleafHelpPrinter):
             help="Absolute path to a custom clang toolchain",
             type=_require_absolute_path,
         )
+        group.add_argument(
+            "--incompatible_hermetic_actions",
+            dest="hermetic_actions",
+            action="store_true",
+            default=False,
+            help=textwrap.dedent("""\
+                For actions that does not explicitly use the hermetic toolchain,
+                only allow them to use a limited list of tools.
+                See build/kernel/kleaf/docs/hermeticity.md.
+            """),
+        )
+        group.add_argument(
+            "--noincompatible_hermetic_actions",
+            dest="hermetic_actions",
+            action="store_false",
+            default=False,
+            help="Equivalent to --incompatible_hermetic_actions=false",
+        )
 
     def _check_repo_manifest(self, value: str) \
             -> tuple[pathlib.Path | None, pathlib.Path | None]:
@@ -517,6 +556,16 @@ class BazelWrapper(KleafHelpPrinter):
             cache_dir_bazelrc,
         ])
 
+        if self.known_args.hermetic_actions:
+            hermetic_actions_bazelrc = (
+                self.gen_bazelrc_dir / "hermetic_actions.bazelrc")
+            hermetic_actions_bazelrc.write_text(textwrap.dedent("""\
+                build --action_env=PATH
+            """))
+            self.transformed_startup_options += self._transform_bazelrc_files([
+                hermetic_actions_bazelrc,
+            ])
+
         self.transformed_startup_options += self._transform_bazelrc_files([
             # Toolchains and platforms
             self.kleaf_repo_dir / "build/kernel/kleaf/bazelrc/hermetic_cc.bazelrc",
@@ -661,6 +710,50 @@ class BazelWrapper(KleafHelpPrinter):
             print("Kleaf ABI update available targets:")
             self.transformed_command_args.append(_QUERY_ABI_TARGETS_ARG)
 
+    def _add_default_hermetic_path(self):
+        self.gen_default_hermetic_path_dir = (
+            self.absolute_out_dir / "bazel/default_hermetic_path")
+        if not self.known_args.hermetic_actions:
+            return
+        self.gen_default_hermetic_path_dir.mkdir(parents=True, exist_ok=True)
+
+        host_tools = DEFAULT_HOST_TOOLS + _ACTION_EXTRA_HOST_TOOLS
+        for tool in host_tools:
+            dst_path = self.gen_default_hermetic_path_dir / tool
+            src_path = shutil.which(tool)
+            if src_path:
+                if dst_path.is_symlink():
+                    if dst_path.resolve() == src_path:
+                        continue
+                    dst_path.unlink()
+                dst_path.symlink_to(src_path)
+                continue
+            if dst_path.exists():
+                # Always unlink the file because it might be a symlink.
+                dst_path.unlink()
+            dst_path.write_text(textwrap.dedent(f"""\
+                #!/bin/sh
+                echo "ERROR:Tool {tool} not found on host" >&2
+                exit 1
+            """))
+            dst_path.chmod(0o755)
+
+        for tool in _ACTION_HERMETIC_TOOLS:
+            tool = pathlib.Path(tool)
+            dst_path = self.gen_default_hermetic_path_dir / tool.name
+            if dst_path.exists():
+                continue
+            src_path = self.kleaf_repo_dir / tool
+            dst_path.symlink_to(src_path)
+
+        all_tools = set(host_tools + _ACTION_HERMETIC_TOOLS)
+        for file in self.gen_default_hermetic_path_dir.iterdir():
+            if file not in all_tools:
+                file.unlink()
+
+        # TODO(b/228105413): Drop provided $PATH after allow list is settled.
+        self.env["PATH"] = str(self.gen_default_hermetic_path_dir)
+
     def run(self) -> int:
         """Runs the wrapper.
 
@@ -721,11 +814,12 @@ class BazelWrapper(KleafHelpPrinter):
         """Returns epilog coroutine after bazel command finishes"""
         if self.command != "clean":
             return None
-        return self.remove_gen_bazelrc_dir()
+        return self.remove_gen_dirs()
 
-    async def remove_gen_bazelrc_dir(self):
-        sys.stderr.write("INFO: Deleting generated bazelrc directory.\n")
+    async def remove_gen_dirs(self):
+        sys.stderr.write("INFO: Deleting generated directories.\n")
         shutil.rmtree(self.gen_bazelrc_dir, ignore_errors=True)
+        shutil.rmtree(self.gen_default_hermetic_path_dir, ignore_errors=True)
 
 
 class OutputMutator:
