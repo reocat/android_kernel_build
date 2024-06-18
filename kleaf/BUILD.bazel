@@ -921,4 +921,7 @@ py_library(
     ],
     imports = ["."],
     visibility = ["//build/kernel:__subpackages__"],
+    deps = [
+        "//build/kernel/kleaf/impl:default_host_tools",
+    ],
 )
