@@ -919,6 +919,9 @@ py_library(
         "bazel.py",
         "kleaf_help.py",
     ],
+    deps = [
+        "//build/kernel/kleaf/impl:default_host_tools",
+    ],
     imports = ["."],
     visibility = ["//build/kernel:__subpackages__"],
 )
