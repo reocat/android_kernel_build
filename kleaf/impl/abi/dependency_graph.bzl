@@ -37,9 +37,10 @@ def _dependency_graph_extractor_impl(ctx):
         ),
         required = True,
     )
-    in_tree_modules = utils.find_files(suffix = ".ko", files = ctx.files.kernel_build)
     srcs = [vmlinux]
-    srcs += in_tree_modules
+    if not ctx.attr.exclude_base_kernel_modules:
+        include_in_tree_modules = utils.find_files(suffix = ".ko", files = ctx.files.kernel_build)
+        srcs += include_in_tree_modules
 
     # External modules
     for kernel_module in ctx.attr.kernel_modules:
@@ -53,11 +54,22 @@ def _dependency_graph_extractor_impl(ctx):
     tools = [ctx.executable._dependency_graph_extractor]
     transitive_tools = [ctx.attr.kernel_build[KernelSerializedEnvInfo].tools]
 
-    # Get the signed and stripped module archive for the GKI modules
-    base_modules_archive = ctx.attr.kernel_build[KernelBuildAbiInfo].base_modules_staging_archive
-    if not base_modules_archive:
-        base_modules_archive = ctx.attr.kernel_build[KernelBuildAbiInfo].modules_staging_archive
-    inputs.append(base_modules_archive)
+    base_modules_archive_cmd = ""
+    if not ctx.attr.exclude_base_kernel_modules:
+        # Get the signed and stripped module archive for the GKI modules
+        base_modules_archive = ctx.attr.kernel_build[KernelBuildAbiInfo].base_modules_staging_archive
+        if not base_modules_archive:
+            base_modules_archive = ctx.attr.kernel_build[KernelBuildAbiInfo].modules_staging_archive
+        inputs.append(base_modules_archive)
+        base_modules_archive_cmd = """
+            mkdir -p {intermediates_dir}/temp
+            tar xf {base_modules_archive} -C {intermediates_dir}/temp
+            find {intermediates_dir}/temp -name '*.ko' -exec mv -t {intermediates_dir} {{}} \\;
+            rm -rf {intermediates_dir}/temp
+        """.format(
+            base_modules_archive = base_modules_archive.path,
+            intermediates_dir = intermediates_dir,
+        )
 
     command = kernel_utils.setup_serialized_env_cmd(
         serialized_env_info = ctx.attr.kernel_build[KernelSerializedEnvInfo],
@@ -66,10 +78,7 @@ def _dependency_graph_extractor_impl(ctx):
     command += """
         mkdir -p {intermediates_dir}
         # Extract archive and copy the modules from the base kernel first.
-        mkdir -p {intermediates_dir}/temp
-        tar xf {base_modules_archive} -C {intermediates_dir}/temp
-        find {intermediates_dir}/temp -name '*.ko' -exec mv -t {intermediates_dir} {{}} \\;
-        rm -rf {intermediates_dir}/temp
+        {base_modules_archive_cmd}
         # Copy other inputs including vendor modules; This will overwrite modules being overridden.
         cp -pfl {srcs} {intermediates_dir}
         {dependency_graph_extractor} {intermediates_dir} {output}
@@ -79,7 +88,7 @@ def _dependency_graph_extractor_impl(ctx):
         intermediates_dir = intermediates_dir,
         dependency_graph_extractor = ctx.executable._dependency_graph_extractor.path,
         output = out.path,
-        base_modules_archive = base_modules_archive.path,
+        base_modules_archive_cmd = base_modules_archive_cmd,
     )
     debug.print_scripts(ctx, command)
     ctx.actions.run_shell(
@@ -119,6 +128,9 @@ dependency_graph_extractor = rule(
         "kernel_build": attr.label(providers = [KernelSerializedEnvInfo, KernelBuildAbiInfo]),
         # For label targets they should provide KernelModuleInfo.
         "kernel_modules": attr.label_list(allow_files = True),
+        "exclude_base_kernel_modules": attr.bool(
+            doc = "Whether the analysis should made for only external modules.",
+        ),
         "_dependency_graph_extractor": attr.label(
             default = "//build/kernel:dependency_graph_extractor",
             cfg = "exec",
@@ -199,7 +211,13 @@ dependency_graph_drawer = rule(
     },
 )
 
-def dependency_graph(name, kernel_build, kernel_modules, colorful = None, **kwargs):
+def dependency_graph(
+        name,
+        kernel_build,
+        kernel_modules,
+        colorful = None,
+        exclude_base_kernel_modules = None,
+        **kwargs):
     """Declare targets for dependency graph visualization.
 
     Output:
@@ -210,6 +228,7 @@ def dependency_graph(name, kernel_build, kernel_modules, colorful = None, **kwar
         kernel_build: The [`kernel_build`](#kernel_build).
         kernel_modules: A list of external [`kernel_module()`](#kernel_module)s.
         colorful: When set to True, outgoing edges from every node are colored differently.
+        exclude_base_kernel_modules: Whether the analysis should made for only external modules.
         **kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
           See complete list
@@ -221,6 +240,7 @@ def dependency_graph(name, kernel_build, kernel_modules, colorful = None, **kwar
         name = name + "_extractor",
         kernel_build = kernel_build,
         kernel_modules = kernel_modules,
+        exclude_base_kernel_modules = exclude_base_kernel_modules,
         **kwargs
     )
 

@@ -191,7 +191,8 @@ A rule that creates a [Graphviz](https://graphviz.org/) diagram file.
 ## dependency_graph_extractor
 
 <pre>
-dependency_graph_extractor(<a href="#dependency_graph_extractor-name">name</a>, <a href="#dependency_graph_extractor-enable_add_vmlinux">enable_add_vmlinux</a>, <a href="#dependency_graph_extractor-kernel_build">kernel_build</a>, <a href="#dependency_graph_extractor-kernel_modules">kernel_modules</a>)
+dependency_graph_extractor(<a href="#dependency_graph_extractor-name">name</a>, <a href="#dependency_graph_extractor-enable_add_vmlinux">enable_add_vmlinux</a>, <a href="#dependency_graph_extractor-exclude_base_kernel_modules">exclude_base_kernel_modules</a>, <a href="#dependency_graph_extractor-kernel_build">kernel_build</a>,
+                           <a href="#dependency_graph_extractor-kernel_modules">kernel_modules</a>)
 </pre>
 
 A rule that extracts a symbol dependency graph from a kernel build and modules.
@@ -221,6 +222,7 @@ It works by matching undefined symbols from one module with exported symbols fro
 | :------------- | :------------- | :------------- | :------------- | :------------- |
 | <a id="dependency_graph_extractor-name"></a>name |  A unique name for this target.   | <a href="https://bazel.build/concepts/labels#target-names">Name</a> | required |  |
 | <a id="dependency_graph_extractor-enable_add_vmlinux"></a>enable_add_vmlinux |  If `True` enables `kernel_build_add_vmlinux` transition.   | Boolean | optional |  `True`  |
+| <a id="dependency_graph_extractor-exclude_base_kernel_modules"></a>exclude_base_kernel_modules |  Whether the analysis should made for only external modules.   | Boolean | optional |  `False`  |
 | <a id="dependency_graph_extractor-kernel_build"></a>kernel_build |  -   | <a href="https://bazel.build/concepts/labels">Label</a> | optional |  `None`  |
 | <a id="dependency_graph_extractor-kernel_modules"></a>kernel_modules |  -   | <a href="https://bazel.build/concepts/labels">List of labels</a> | optional |  `[]`  |
 
@@ -916,7 +918,7 @@ dependencies are stable, it is recommended to:
 ## dependency_graph
 
 <pre>
-dependency_graph(<a href="#dependency_graph-name">name</a>, <a href="#dependency_graph-kernel_build">kernel_build</a>, <a href="#dependency_graph-kernel_modules">kernel_modules</a>, <a href="#dependency_graph-colorful">colorful</a>, <a href="#dependency_graph-kwargs">kwargs</a>)
+dependency_graph(<a href="#dependency_graph-name">name</a>, <a href="#dependency_graph-kernel_build">kernel_build</a>, <a href="#dependency_graph-kernel_modules">kernel_modules</a>, <a href="#dependency_graph-colorful">colorful</a>, <a href="#dependency_graph-exclude_base_kernel_modules">exclude_base_kernel_modules</a>, <a href="#dependency_graph-kwargs">kwargs</a>)
 </pre>
 
 Declare targets for dependency graph visualization.
@@ -934,6 +936,7 @@ Output:
 | <a id="dependency_graph-kernel_build"></a>kernel_build |  The [`kernel_build`](#kernel_build).   |  none |
 | <a id="dependency_graph-kernel_modules"></a>kernel_modules |  A list of external [`kernel_module()`](#kernel_module)s.   |  none |
 | <a id="dependency_graph-colorful"></a>colorful |  When set to True, outgoing edges from every node are colored differently.   |  `None` |
+| <a id="dependency_graph-exclude_base_kernel_modules"></a>exclude_base_kernel_modules |  Whether the analysis should made for only external modules.   |  `None` |
 | <a id="dependency_graph-kwargs"></a>kwargs |  Additional attributes to the internal rule, e.g. [`visibility`](https://docs.bazel.build/versions/main/visibility.html). See complete list [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common-attributes).   |  none |
 
 
