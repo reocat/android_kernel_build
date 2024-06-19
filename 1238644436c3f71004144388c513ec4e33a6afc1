@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aeee4f99_7a7ff31f",
+        "filename": "kleaf/impl/declare_host_tools.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-19T10:57:07Z",
+      "side": 1,
+      "message": "TIL: Does this need https://bazel.build/reference/command-line-reference#flag--experimental_enable_scl_dialect though?\n\nnvm: Just saw it added in the `.bazelrc` file above.",
+      "range": {
+        "startLine": 17,
+        "startChar": 25,
+        "endLine": 17,
+        "endChar": 29
+      },
+      "revId": "1238644436c3f71004144388c513ec4e33a6afc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6839f967_318b5a36",
+        "filename": "kleaf/impl/default_host_tools.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-19T10:57:07Z",
+      "side": 1,
+      "message": "Sorry for the naive question: what is this extension about?\n\nupd: nvm just saw it how it\u0027s used in other file above (TIL).",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 22
+      },
+      "revId": "1238644436c3f71004144388c513ec4e33a6afc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dc0682c_f9e08619",
+        "filename": "kleaf/impl/default_host_tools.scl",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-19T10:57:07Z",
+      "side": 1,
+      "message": "2024",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "1238644436c3f71004144388c513ec4e33a6afc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
