@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "404acd5d_8a886653",
+        "filename": "kleaf/impl/abi/dependency_graph.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-06-19T16:43:30Z",
+      "side": 1,
+      "message": "Should this rather be \"exclude_base_kernel_modules\" or something? \"external\" might be too unspecific.",
+      "range": {
+        "startLine": 231,
+        "startChar": 8,
+        "endLine": 231,
+        "endChar": 29
+      },
+      "revId": "9698a3ad620d3cb9c06499e6b331aa4fdddbc99c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
