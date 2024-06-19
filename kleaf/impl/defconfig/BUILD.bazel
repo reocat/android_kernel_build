@@ -181,3 +181,12 @@ filegroup(
     }),
     visibility = ["//visibility:public"],
 )
+
+filegroup(
+    name = "gki_module_protection",
+    srcs = select({
+        "//build/kernel/kleaf:gki_module_protection_disabled": ["gki_module_protection_disabled_defconfig"],
+        "//conditions:default": [],
+    }),
+    visibility = ["//visibility:public"],
+)
