@@ -748,6 +748,7 @@ def _get_defconfig_fragments(
         Label("//build/kernel/kleaf:defconfig_fragment"),
         Label("//build/kernel/kleaf/impl/defconfig:debug"),
         Label("//build/kernel/kleaf/impl/defconfig:gcov"),
+        Label("//build/kernel/kleaf/impl/defconfig:gki_module_protection"),
         Label("//build/kernel/kleaf/impl/defconfig:rust"),
         Label("//build/kernel/kleaf/impl/defconfig:zstd_dwarf_compression"),
     ]

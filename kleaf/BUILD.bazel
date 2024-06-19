@@ -297,12 +297,39 @@ bool_flag(
     visibility = ["//visibility:public"],
 )
 
+# If true, GKI runtime module protection is disabled.
+config_setting(
+    name = "kmi_symbol_list_strict_mode_is_false",
+    flag_values = {":kmi_symbol_list_strict_mode": "0"},
+    # All kernel_* from different packages can see this.
+    visibility = ["//visibility:public"],
+)
+
 # If true, kmi_symbol_list_violations_check is enabled.
 # If false, kmi_symbol_list_violations_check is disabled.
 bool_flag(
     name = "kmi_symbol_list_violations_check",
     build_setting_default = True,
     visibility = ["//visibility:public"],
+)
+
+# If true, GKI runtime module protection is disabled.
+config_setting(
+    name = "kmi_symbol_list_violations_check_is_false",
+    flag_values = {":kmi_symbol_list_violations_check": "0"},
+    # All kernel_* from different packages can see this.
+    visibility = ["//visibility:public"],
+)
+
+# Any of the options signal a debug build.
+selects.config_setting_group(
+    name = "gki_module_protection_disabled",
+    match_any = [
+        "//build/kernel/kleaf/impl:force_disable_trim_is_true",
+        ":kmi_symbol_list_strict_mode_is_false",
+        ":kmi_symbol_list_violations_check_is_false",
+    ],
+    visibility = ["//build/kernel/kleaf/impl/defconfig:__pkg__"],
 )
 
 # Additional symbol lists to add to GKI kernel build
