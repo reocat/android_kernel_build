@@ -16,7 +16,7 @@
 # Script used as --workspace_status_command with --config=stamp.
 # https://docs.bazel.build/versions/main/command-line-reference.html#flag--workspace_status_command
 
-KLEAF_REPO_DIR=$($(dirname $(dirname $(readlink -f "$0")))/gettop.sh)
+# Must be executed from the workspace root.
 
-${KLEAF_REPO_DIR}/build/kernel/kleaf/workspace_status_common.sh
-${KLEAF_REPO_DIR}/prebuilts/build-tools/path/linux-x86/python3 ${KLEAF_REPO_DIR}/build/kernel/kleaf/workspace_status_stamp.py
+build/kernel/kleaf/workspace_status_common.sh
+prebuilts/build-tools/path/linux-x86/python3 build/kernel/kleaf/workspace_status_stamp.py
