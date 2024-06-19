@@ -22,6 +22,7 @@ cc_library(
     target_compatible_with = _LINUX_X86_64,
 )
 
+# TODO(b/348087663): re-enable after issue is fixed.
 cc_binary(
     name = "mybin_fully_static_linux_x86_64",
     srcs = [
@@ -90,7 +91,6 @@ hermetic_genrule(
     cmd = """
         $(location :hello_world_linux_x86_64) > $@
         $(location :mybin_dynamic_linux_x86_64) >> $@
-        $(location :mybin_fully_static_linux_x86_64) >> $@
         $(location :mybin_static_linux_x86_64) >> $@
         $(location :openssl_client_linux_x86_64) >> $@
         $(location :cpp_linux_x86_64) >> $@
@@ -99,7 +99,6 @@ hermetic_genrule(
         ":cpp_linux_x86_64",
         ":hello_world_linux_x86_64",
         ":mybin_dynamic_linux_x86_64",
-        ":mybin_fully_static_linux_x86_64",
         ":mybin_static_linux_x86_64",
         ":mylib_linux_x86_64",
         ":openssl_client_linux_x86_64",
