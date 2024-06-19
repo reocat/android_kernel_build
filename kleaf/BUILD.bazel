@@ -299,10 +299,17 @@ bool_flag(
 
 # If true, kmi_symbol_list_violations_check is enabled.
 # If false, kmi_symbol_list_violations_check is disabled.
+# Additionally GKI runtime module protection is enabled / disabled.
 bool_flag(
     name = "kmi_symbol_list_violations_check",
     build_setting_default = True,
     visibility = ["//visibility:public"],
+)
+
+config_setting(
+    name = "kmi_symbol_list_violations_check_is_true",
+    flag_values = {":kmi_symbol_list_violations_check": "1"},
+    visibility = ["//build/kernel/kleaf/impl/defconfig:__pkg__"],
 )
 
 # Additional symbol lists to add to GKI kernel build

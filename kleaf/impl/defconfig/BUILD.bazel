@@ -181,3 +181,12 @@ filegroup(
     }),
     visibility = ["//visibility:public"],
 )
+
+filegroup(
+    name = "gki_module_protection",
+    srcs = select({
+        "//build/kernel/kleaf:kmi_symbol_list_violations_check_is_true": [],
+        "//conditions:default": ["gki_module_protection_disabled_defconfig"],
+    }),
+    visibility = ["//visibility:public"],
+)
