@@ -1,6 +1,47 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd5b273d_f530f5a2",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-19T11:07:19Z",
+      "side": 1,
+      "message": "nit: Maybe `missing_ok\u003dTrue` to avoid unwanted errors?",
+      "range": {
+        "startLine": 752,
+        "startChar": 28,
+        "endLine": 752,
+        "endChar": 29
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8b9a0aed_42d2e1b8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/bazel.py",
+              "range": {
+                "startLine": 752,
+                "startChar": 0,
+                "endLine": 753,
+                "endChar": 0
+              },
+              "replacement": "                file.unlink(missing_ok\u003dTrue)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1238644436c3f71004144388c513ec4e33a6afc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "aeee4f99_7a7ff31f",
