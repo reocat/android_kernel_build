@@ -170,12 +170,13 @@ bool_flag(
     visibility = ["//visibility:public"],
 )
 
+# If true, GKI runtime module protection is disabled.
 config_setting(
     name = "force_disable_trim_is_true",
     flag_values = {
         ":force_disable_trim": "1",
     },
-    # All kernel_* from different packages can see this
+    # All kernel_* from different packages can see this.
     visibility = ["//visibility:public"],
 )
 
