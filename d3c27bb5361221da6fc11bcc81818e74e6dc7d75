@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e887353e_4e474ea4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-06-20T19:24:15Z",
+      "side": 1,
+      "message": "TH isn\u0027t sufficient as a test, because `--rust` was conflicting with the new default gki defconfig, so we turned those down before Kleaf required a revert.\n\nI\u0027ll manually pull this down and check it, thanks!",
+      "revId": "d3c27bb5361221da6fc11bcc81818e74e6dc7d75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
