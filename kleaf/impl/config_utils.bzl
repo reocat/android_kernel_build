@@ -89,7 +89,7 @@ def _create_check_defconfig_cmd(label, defconfig_fragments_paths_expr):
                 fi
                 if [[ -n "${{error_msg}}" ]]; then
                     echo "ERROR: {label}: ${{error_msg}}
-    Are they declared in Kconfig?" >&2
+    All entries need to be declared in Kconfig. Further, all dependencies must be met." >&2
                     exit 1
                 fi
             done
