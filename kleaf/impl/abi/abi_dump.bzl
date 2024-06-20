@@ -78,7 +78,7 @@ def _abi_dump_full_stg(ctx):
     vmlinux = _find_vmlinux(ctx)
     unstripped_dirs = _unstripped_dirs(ctx)
 
-    inputs = [vmlinux, ctx.file._stg]
+    inputs = [vmlinux, ctx.file._stg] + ctx.files.kernel_build
     inputs += unstripped_dirs
 
     # Collect all modules from all directories
@@ -111,7 +111,7 @@ def _abi_dump_filtered_stg(ctx, full_abi_out_file):
     hermetic_tools = hermetic_toolchain.get(ctx)
     abi_out_file = ctx.actions.declare_file("{}/abi.stg".format(ctx.attr.name))
     combined_abi_symbollist = ctx.attr.kernel_build[KernelBuildAbiInfo].combined_abi_symbollist
-    inputs = [full_abi_out_file]
+    inputs = [full_abi_out_file] + ctx.files.kernel_build
     command = hermetic_tools.setup
 
     if combined_abi_symbollist:
