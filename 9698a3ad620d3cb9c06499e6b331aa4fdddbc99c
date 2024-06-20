@@ -22,6 +22,30 @@
       },
       "revId": "9698a3ad620d3cb9c06499e6b331aa4fdddbc99c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da44d5e8_60500fc5",
+        "filename": "kleaf/impl/abi/dependency_graph.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-20T10:20:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "404acd5d_8a886653",
+      "range": {
+        "startLine": 231,
+        "startChar": 8,
+        "endLine": 231,
+        "endChar": 29
+      },
+      "revId": "9698a3ad620d3cb9c06499e6b331aa4fdddbc99c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
