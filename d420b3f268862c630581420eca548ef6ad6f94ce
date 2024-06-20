@@ -22,6 +22,30 @@
       },
       "revId": "d420b3f268862c630581420eca548ef6ad6f94ce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40be835d_08a3c632",
+        "filename": "kleaf/impl/abi/abi_dump.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-20T21:27:05Z",
+      "side": 1,
+      "message": "Having too large of an input set may cause spurious rebuilds.",
+      "parentUuid": "4af57681_bdb7e0e2",
+      "range": {
+        "startLine": 81,
+        "startChar": 40,
+        "endLine": 81,
+        "endChar": 62
+      },
+      "revId": "d420b3f268862c630581420eca548ef6ad6f94ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
