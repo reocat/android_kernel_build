@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97d5721b_a492d310",
+        "filename": "kleaf/impl/config_utils.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-06-20T21:08:37Z",
+      "side": 1,
+      "message": "English is not my first language, but I have a hard time parsing this (maybe `s/or/and/` ?). Consider actively stating what is expected, perhaps something like\n\n```\nAll entries need to be declared in Kconfig. Further, all dependencies must be met.\n```",
+      "range": {
+        "startLine": 92,
+        "startChar": 4,
+        "endLine": 92,
+        "endChar": 53
+      },
+      "revId": "248f69eecd255049c4110d8b455276fe89fa73b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
