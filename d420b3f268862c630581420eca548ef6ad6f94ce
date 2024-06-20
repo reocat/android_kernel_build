@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4af57681_bdb7e0e2",
+        "filename": "kleaf/impl/abi/abi_dump.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-20T21:25:55Z",
+      "side": 1,
+      "message": "I don\u0027t think you should depend on ALL files because they are not needed from the action.\n\nPerhaps only depend on `kmi_symbol_list_strict_mode_checked` (and maybe others that are relevant to ABI checking)? That is, \"if the kmi_symbol_list_strict_mode check yields an error, we don\u0027t bother checking the ABI\"",
+      "range": {
+        "startLine": 81,
+        "startChar": 40,
+        "endLine": 81,
+        "endChar": 62
+      },
+      "revId": "d420b3f268862c630581420eca548ef6ad6f94ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
