@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7b5cd4de_b5a20d15",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-06-20T12:27:13Z",
+      "side": 1,
+      "message": "Can you confirm there is no measurable performance impact? This is done on every invocation of the wrapper.",
+      "revId": "1238644436c3f71004144388c513ec4e33a6afc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cd5b273d_f530f5a2",
         "filename": "kleaf/bazel.py",
         "patchSetId": 5
@@ -88,6 +105,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24751fb0_b66b463f",
+        "filename": "kleaf/impl/default_host_tools.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-06-20T12:27:13Z",
+      "side": 1,
+      "message": "Starlark Configuration Language",
+      "parentUuid": "6839f967_318b5a36",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 22
+      },
+      "revId": "1238644436c3f71004144388c513ec4e33a6afc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3dc0682c_f9e08619",
@@ -106,6 +147,29 @@
         "startChar": 16,
         "endLine": 1,
         "endChar": 20
+      },
+      "revId": "1238644436c3f71004144388c513ec4e33a6afc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "344d7f67_df7eea14",
+        "filename": "kleaf/impl/default_host_tools.scl",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-06-20T12:27:13Z",
+      "side": 1,
+      "message": "as follow-up: can we deprecate (or right away remove) this workaround by now?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 11
       },
       "revId": "1238644436c3f71004144388c513ec4e33a6afc1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
