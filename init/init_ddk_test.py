@@ -106,7 +106,6 @@ class KleafProjectSetterTest(parameterized.TestCase):
             temp_dir = pathlib.Path(temp_dir)
             ddk_workspace = temp_dir / "ddk_workspace"
             kleaf_repo = temp_dir / "kleaf_repo"
-            prebuilts_dir = temp_dir / "prebuilts_dir"
             try:
                 init_ddk.KleafProjectSetter(
                     build_id=None,
@@ -114,7 +113,7 @@ class KleafProjectSetterTest(parameterized.TestCase):
                     ddk_workspace=ddk_workspace,
                     kleaf_repo=kleaf_repo,
                     local=False,
-                    prebuilts_dir=prebuilts_dir,
+                    prebuilts_dir=None,
                     url_fmt=None,
                 ).run()
             except:  # pylint: disable=bare-except
@@ -122,7 +121,6 @@ class KleafProjectSetterTest(parameterized.TestCase):
             finally:
                 self.assertTrue(ddk_workspace.exists())
                 self.assertTrue(kleaf_repo.exists())
-                self.assertTrue(prebuilts_dir.exists())
 
     def test_tools_bazel_symlink(self):
         """Tests a symlink to tools/bazel is correctly created."""
