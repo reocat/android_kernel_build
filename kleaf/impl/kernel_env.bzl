@@ -450,10 +450,6 @@ def _get_env_setup_cmds(ctx):
             export KCPPFLAGS="$KCPPFLAGS -ffile-prefix-map=$(realpath ${{ROOT_DIR}}/${{KERNEL_DIR}}/..)=/proc/self/cwd"
         fi
         export KCPPFLAGS_COMPAT="$KCPPFLAGS"
-
-        # Set libclang.so location for use by bindgen for Rust
-        LIBCLANG_PATH=$(dirname $(which clang))/../lib
-        export LIBCLANG_PATH
     """.format(
         get_make_jobs_cmd = status.get_volatile_status_cmd(ctx, "MAKE_JOBS"),
         get_make_keep_going_cmd = status.get_volatile_status_cmd(ctx, "MAKE_KEEP_GOING"),
