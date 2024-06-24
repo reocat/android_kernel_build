@@ -16,6 +16,24 @@
       "message": "nit: can you add a comment here to say the reason behind this change? e.g. \"ABI checks don\u0027t make sense if kmi string mode check fails\" or something more specific",
       "revId": "36fdd781f463796f5e58c6b97fe20945a7171d8b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fe5d527_2482a16e",
+        "filename": "kleaf/impl/abi/abi_dump.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-24T14:27:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e62d691_678b014a",
+      "revId": "36fdd781f463796f5e58c6b97fe20945a7171d8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
