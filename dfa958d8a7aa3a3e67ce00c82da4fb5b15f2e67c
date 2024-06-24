@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e732f3e_580af4fe",
+        "filename": "BUILD.bazel",
+        "patchSetId": 21
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-24T18:40:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9052fb3_c0a2d0ad",
+      "range": {
+        "startLine": 384,
+        "startChar": 14,
+        "endLine": 384,
+        "endChar": 19
+      },
+      "revId": "dfa958d8a7aa3a3e67ce00c82da4fb5b15f2e67c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06d77e86_970484f3",
@@ -135,6 +159,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28c4b9e1_7bcc94f2",
+        "filename": "init/repo_wrapper.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-24T18:40:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78cad14b_4f7e0097",
+      "range": {
+        "startLine": 144,
+        "startChar": 28,
+        "endLine": 144,
+        "endChar": 35
+      },
+      "revId": "dfa958d8a7aa3a3e67ce00c82da4fb5b15f2e67c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86ece233_a888d5b7",
@@ -192,6 +240,30 @@
           ]
         }
       ],
+      "revId": "dfa958d8a7aa3a3e67ce00c82da4fb5b15f2e67c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "097be24b_297f2cc1",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-24T18:40:58Z",
+      "side": 1,
+      "message": "Yes.\n\n_unshare_mount_run reruns the current test in a subprocess in an unshare\u0027ed mount namespace. So at the parent process this can end after the child process finishes.\n\nThink of it as a fork()",
+      "parentUuid": "86ece233_a888d5b7",
+      "range": {
+        "startLine": 656,
+        "startChar": 16,
+        "endLine": 656,
+        "endChar": 22
+      },
       "revId": "dfa958d8a7aa3a3e67ce00c82da4fb5b15f2e67c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
