@@ -824,6 +824,7 @@ def _define_common_kernel(
             name + "_headers",
             name + "_images",
             name + "_kmi_symbol_list",
+            name + "_raw_kmi_symbol_list",
             name + "_gki_artifacts",
         ],
     )
