@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f1c09e9_1d3531b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-24T19:20:33Z",
+      "side": 1,
+      "message": "Done, see commit message",
+      "parentUuid": "7b5cd4de_b5a20d15",
+      "revId": "1238644436c3f71004144388c513ec4e33a6afc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd5b273d_f530f5a2",
@@ -55,6 +73,30 @@
           ]
         }
       ],
+      "revId": "1238644436c3f71004144388c513ec4e33a6afc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ec8f8f8_93ccebf7",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-24T19:20:33Z",
+      "side": 1,
+      "message": "It is from \"iterdir\" so it shouldn\u0027t be missing_ok, technically. I want to make sure no other files exist in that directory.",
+      "parentUuid": "cd5b273d_f530f5a2",
+      "range": {
+        "startLine": 752,
+        "startChar": 28,
+        "endLine": 752,
+        "endChar": 29
+      },
       "revId": "1238644436c3f71004144388c513ec4e33a6afc1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -152,6 +194,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab32413a_5fd23455",
+        "filename": "kleaf/impl/default_host_tools.scl",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-24T19:20:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3dc0682c_f9e08619",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "1238644436c3f71004144388c513ec4e33a6afc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "344d7f67_df7eea14",
@@ -165,6 +231,30 @@
       "writtenOn": "2024-06-20T12:27:13Z",
       "side": 1,
       "message": "as follow-up: can we deprecate (or right away remove) this workaround by now?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 11
+      },
+      "revId": "1238644436c3f71004144388c513ec4e33a6afc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "342ad272_007f69b2",
+        "filename": "kleaf/impl/default_host_tools.scl",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-24T19:20:33Z",
+      "side": 1,
+      "message": "Let\u0027s keep it for a bit longer for now. The fix is backported to 5.15 kernels but I don\u0027t think we should assume that developer\u0027s machine has it yet.\n\nAs a follow up, I can reduce its footprint by only creating necessary symlinks when --workaround_btrfs is provided.",
+      "parentUuid": "344d7f67_df7eea14",
       "range": {
         "startLine": 25,
         "startChar": 0,
