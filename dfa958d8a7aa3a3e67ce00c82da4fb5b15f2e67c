@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bd4c394_6c9467e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-24T18:47:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb7d4a2c_7d0fd02b",
+      "revId": "dfa958d8a7aa3a3e67ce00c82da4fb5b15f2e67c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9052fb3_c0a2d0ad",
@@ -132,6 +150,30 @@
           ]
         }
       ],
+      "revId": "dfa958d8a7aa3a3e67ce00c82da4fb5b15f2e67c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "527d6469_76e00050",
+        "filename": "init/repo_wrapper.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-24T18:47:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06d77e86_970484f3",
+      "range": {
+        "startLine": 47,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 35
+      },
       "revId": "dfa958d8a7aa3a3e67ce00c82da4fb5b15f2e67c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
