@@ -11,6 +11,11 @@ cc_binary(
     name = "hello_world_linux_x86_64",
     srcs = ["hello_world.c"],
     target_compatible_with = _LINUX_X86_64,
+    # linkstatic=False,
+    linkstatic=True,
+    deps = [
+        "//prebuilts/build-tools/sysroots/x86_64-unknown-linux-musl:libc_musl",
+    ]
 )
 
 cc_library(
