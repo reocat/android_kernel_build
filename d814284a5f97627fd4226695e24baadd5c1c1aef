@@ -22,6 +22,30 @@
       },
       "revId": "d814284a5f97627fd4226695e24baadd5c1c1aef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "913381b9_432dfa49",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-25T00:07:48Z",
+      "side": 1,
+      "message": "It was for testing context manager type hints; deleted.",
+      "parentUuid": "181d4a52_5a116ba4",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 8
+      },
+      "revId": "d814284a5f97627fd4226695e24baadd5c1c1aef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
