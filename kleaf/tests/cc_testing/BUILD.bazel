@@ -11,6 +11,7 @@ cc_binary(
     name = "hello_world_linux_x86_64",
     srcs = ["hello_world.c"],
     target_compatible_with = _LINUX_X86_64,
+    linkstatic=False,
 )
 
 cc_library(
