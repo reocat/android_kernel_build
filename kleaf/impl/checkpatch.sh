@@ -187,6 +187,10 @@ echo "========================================================" >> "${MY_RESULTS
 #                     failures. A better fix would be to remove spdxcheck.py.
 CHECKPATCH_ARGS+=(--no-tree)
 
+# Run with --noshowfile option to ensure consistent output in cases where
+# --showfile is present in a .checkpatch.conf file.
+CHECKPATCH_ARGS+=(--noshowfile)
+
 # Delay exit on non-zero checkpatch.pl return code so we can finish logging.
 
 # Note, it's tricky to ignore this exit code completely and instead return only
