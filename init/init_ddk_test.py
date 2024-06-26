@@ -349,27 +349,43 @@ local_path_override(
             ).run()
 
             with xml.dom.minidom.parse(
-                str(ddk_workspace / ".repo/manifests/kleaf.xml")) as dom:
+                    str(ddk_workspace / ".repo/manifests/kleaf.xml")) as dom:
 
                 root: xml.dom.minidom.Element = dom.documentElement
                 self.assertFalse(root.getElementsByTagName("superproject"))
                 self.assertFalse(root.getElementsByTagName("default"))
                 self.assertTrue(root.getElementsByTagName("remote"))
 
+                # Check <project> paths are fixed
                 projects = root.getElementsByTagName("project")
-                project_paths = [
-                    project.getAttribute("path") for project in projects
-                ]
+                project_paths = []
+                links = {}
+                for project in projects:
+                    project_path = pathlib.Path(project.getAttribute("path")
+                                                or project.getAttribute("name"))
+                    project_paths.append(project_path)
+                    for link in project.getElementsByTagName("linkfile"):
+                        src = project_path / link.getAttribute("src")
+                        dest = pathlib.Path(link.getAttribute("dest"))
+                        links[dest] = src
+
                 self.assertCountEqual(
                     project_paths, [
-                        "external/kleaf/build/kernel",
+                        pathlib.Path("external/kleaf/build/kernel"),
                         # TODO(b/291918721): should sync to
                         #  external/bazel-skylib directly below repo root
-                        "external/kleaf/external/bazel-skylib",
+                        pathlib.Path("external/kleaf/external/bazel-skylib"),
                     ])
 
+                # Check <linkfile> is fixed
+                # pylint: disable=line-too-long
+                self.assertEqual(links, {
+                    pathlib.Path("external/kleaf/tools/bazel"): pathlib.Path("external/kleaf/build/kernel/kleaf/bazel.sh"),
+                    pathlib.Path("external/kleaf/MODULE.bazel"): pathlib.Path("external/kleaf/build/kernel/kleaf/bzlmod/bazel.MODULE.bazel")
+                })
+
             with xml.dom.minidom.parse(
-                str(ddk_workspace / ".repo/manifests/default.xml")) as dom:
+                    str(ddk_workspace / ".repo/manifests/default.xml")) as dom:
                 root: xml.dom.minidom.Element = dom.documentElement
                 includes = root.getElementsByTagName("include")
                 include_names = [

@@ -76,10 +76,13 @@ class RepoManifestParser:
             path_below_repo = self.project_prefix / orig_path_below_repo
             project_paths.append(path_below_repo)
             project.setAttribute("path", str(path_below_repo))
-            # TODO filter non-DDK projects if necessary
             for key, value in defaults.items():
                 if not project.hasAttribute(key):
                     project.setAttribute(key, value)
+
+            for link in project.getElementsByTagName("linkfile"):
+                orig_dest = pathlib.Path(link.getAttribute("dest"))
+                link.setAttribute("dest", str(self.project_prefix / orig_dest))
 
         # Avoid <superproject> and <default> in Kleaf manifest conflicting with
         # the one in main manifest
