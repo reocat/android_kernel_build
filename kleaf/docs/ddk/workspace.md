@@ -77,7 +77,7 @@ $ python init.py --branch aosp_kernel-common-android15-6.6 \
 ```
 
 `init.py` will run `repo sync` as part of the process. To skip this so you
-can run `repo sync` manually, add the `--dryrun_checkout` flag to `init.py`.
+can run `repo sync` manually, add the `--nosync` flag to `init.py`.
 
 ## Root MODULE.bazel
 
