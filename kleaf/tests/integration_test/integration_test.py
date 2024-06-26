@@ -445,7 +445,7 @@ class KleafIntegrationTestBase(unittest.TestCase):
         return [RepoProject.from_element(element)
                 for element in project_elements]
 
-    def _get_project_mount_link_spec(self, kleaf_repo: pathlib.Path,
+    def _get_project_mount_link_spec(self, mount_root: pathlib.Path,
                                      groups: list[str]) \
         -> tuple[MountSpec, LinkSpec]:
         """Returns MountSpec / LinkSpec for projects that matches any group.
@@ -454,7 +454,7 @@ class KleafIntegrationTestBase(unittest.TestCase):
             groups: List of groups to match projects. Projects with the `groups`
                 attribute matching any of the given |groups| are included.
                 If empty, all projects are included.
-            kleaf_repo: The root of the mount point where projects will be
+            mount_root: The root of the mount point where projects will be
                 mounted below.
         """
 
@@ -465,12 +465,12 @@ class KleafIntegrationTestBase(unittest.TestCase):
             if not groups or any(group in project.groups for group in groups):
                 relevant_projects.append(project)
 
-        real_kleaf_repo = pathlib.Path(".").resolve()
+        src_mount_root = pathlib.Path(".").resolve()
         mount_spec = MountSpec()
         link_spec = LinkSpec()
         for project in relevant_projects:
-            mount_spec[real_kleaf_repo / project.path] = \
-                kleaf_repo / project.path
+            mount_spec[src_mount_root / project.path] = \
+                mount_root / project.path
             link_spec.extend(project.links)
 
         return mount_spec, link_spec
@@ -674,12 +674,17 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
             with tempfile.TemporaryDirectory() as ddk_workspace_tmp:
                 ddk_workspace = pathlib.Path(ddk_workspace_tmp)
                 kleaf_repo = ddk_workspace / "external/kleaf"
-                mount_spec, link_spec = self._get_project_mount_link_spec(
-                    kleaf_repo, ["ddk", "ddk-external"],
-                )
+
+                # Mount the projects ourselves to simulate --sync.
+                mount_spec_ddk, link_spec_ddk = (
+                    self._get_project_mount_link_spec(kleaf_repo, ["ddk"]))
+                mount_spec_external, link_spec_external = (
+                    self._get_project_mount_link_spec(ddk_workspace,
+                                                      ["ddk-external"]))
                 mount_spec = MountSpec({
                     self.ddk_workspace: ddk_workspace
-                }) | mount_spec
+                }) | mount_spec_ddk | mount_spec_external
+                link_spec = link_spec_ddk + link_spec_external
 
                 self._unshare_mount_run(mount_spec=mount_spec,
                                         link_spec=link_spec)
