@@ -706,7 +706,7 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
             build_id=build_id,
             # build bots have no repo, so we cannot check if `repo sync`
             # actually works. Skip sync and rely on the mount point.
-            sync="false")
+            sync=False)
 
     def _run_ddk_workspace_setup_test(self,
                                       kleaf_repo: pathlib.Path,
@@ -715,7 +715,7 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
                                       local: bool = True,
                                       url_fmt: str | None = None,
                                       build_id: str | None = None,
-                                      sync: str | None = None):
+                                      sync: bool | None = None):
         # kleaf_repo relative to ddk_workspace
         kleaf_repo_rel = self._force_relative_to(
             kleaf_repo, ddk_workspace)
@@ -756,8 +756,8 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
             args.append(f"--url_fmt={url_fmt}")
         if build_id:
             args.append(f"--build_id={build_id}")
-        if sync:
-            args.append(f"--sync={sync}")
+        if sync is not None:
+            args.append("--sync" if sync else "--nosync")
         self._check_call("run", args)
         Exec.check_call([
             sys.executable,
