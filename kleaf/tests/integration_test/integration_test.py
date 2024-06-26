@@ -756,8 +756,8 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
             args.append(f"--url_fmt={url_fmt}")
         if build_id:
             args.append(f"--build_id={build_id}")
-        if sync:
-            args.append(f"--sync={sync}")
+        if sync is not None:
+            args.append("--sync" if sync else "--nosync")
         self._check_call("run", args)
         Exec.check_call([
             sys.executable,
