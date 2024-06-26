@@ -23,10 +23,27 @@ import xml.dom.minidom
 import xml.parsers.expat
 
 from init.init_errors import KleafProjectSetterError
-from init.repo_manifest_parser import RepoManifestParser
+from init.repo_manifest_parser import RepoManifestParser, ProjectState
 
 # Name of repo sub-manifest that holds the Kleaf projects.
 _KLEAF_MANIFEST = "kleaf.xml"
+
+
+@dataclasses.dataclass(frozen=True)
+class ProjectAbsState:
+    # Paths are relative to repo root.
+
+    # Original path in the repo manifest in the build
+    original_path: pathlib.Path
+
+    # Fixed up path, an absolute path
+    fixed_abs_path: pathlib.Path
+
+
+@dataclasses.dataclass
+class ProjectSyncStates:
+    states: set[ProjectAbsState]
+    synced: bool
 
 
 @dataclasses.dataclass
@@ -39,7 +56,13 @@ class RepoWrapper:
     repo_manifest_of_build: str | None
     sync: bool
 
-    def run(self) -> bool:
+    def run(self) -> ProjectSyncStates:
+        """Updates manifest and run repo sync if requested.
+
+        Returns:
+            set of ProjectSyncState, each describing the orignal
+            path, fixed up path, and whether they are was synced.
+        """
         self._update_manifest()
         return self._do_sync()
 
@@ -47,7 +70,7 @@ class RepoWrapper:
         """Populates kleaf_repo by adding and syncing Git projects."""
         self._superproject_root = self._find_repo_root()
 
-        self._project_paths = self._populate_kleaf_repo_manifest()
+        self._project_states = self._populate_kleaf_repo_manifest()
         self._modify_main_repo_manifest()
 
     def _find_repo_root(self) -> pathlib.Path:
@@ -80,25 +103,28 @@ class RepoWrapper:
         else:
             return self.kleaf_repo
 
-    def _populate_kleaf_repo_manifest(self) -> list[pathlib.Path]:
+    def _populate_kleaf_repo_manifest(self) -> set[ProjectState]:
         """Populates .repo/manifests/kleaf.xml.
 
         Returns:
-            list of Git project paths relative to repo root"""
+            keys are original paths, values are fixed up paths, relative to
+            repo root.
+        """
         if not self.prebuilts_dir:
             # TODO(b/345848548): Support checking out full git sources
             #   without downloading GKI prebuilts
             logging.info("Skip checking out Kleaf projects without "
                          "--prebuilts_dir")
-            return []
+            return set()
         if not self.repo_manifest_of_build:
             logging.warning(
                 "Unable to infer the list of projects from repo manifest "
                 "because there is no repo manifest")
-            return []
+            return set()
 
         # TODO(b/345848548): if not self.prebuilts_dir, groups should be None.
-        groups = {"ddk", "ddk-external"}
+        fixup_groups = {"ddk"}
+        preserve_groups = {"ddk-external"}
 
         kleaf_repo_rel = self.kleaf_repo.relative_to(self._superproject_root)
 
@@ -108,7 +134,8 @@ class RepoWrapper:
             return RepoManifestParser(
                 project_prefix=kleaf_repo_rel,
                 manifest=self.repo_manifest_of_build,
-                groups=groups,
+                fixup_groups=fixup_groups,
+                preserve_groups=preserve_groups,
             ).write_transformed_dom(kleaf_manifest)
 
     def _modify_main_repo_manifest(self):
@@ -137,8 +164,13 @@ class RepoWrapper:
             raise KleafProjectSetterError(
                 f"Unable to parse repo manifest {manifest_path}") from err
 
-    def _do_sync(self) -> bool:
+    def _do_sync(self) -> ProjectSyncStates:
         """Syncs project_paths below superproject_root."""
+        project_abs_states = {ProjectAbsState(
+            original_path=state.original_path,
+            fixed_abs_path=self._superproject_root / state.fixed_path)
+            for state in self._project_states}
+
         if not self.sync:
             logging.warning("`repo sync` is skipped because --nosync.")
             manifest = (self._superproject_root /
@@ -148,9 +180,11 @@ class RepoWrapper:
                 manifest)
             logging.warning("** DON'T FORGET to commit the manifest change and "
                             "run `repo sync` !**")
-            return False
+            return ProjectSyncStates(
+                states=project_abs_states, synced=False)
 
         subprocess_args = ["repo", "sync", "-c"]
-        subprocess_args.extend(str(path) for path in self._project_paths)
+        subprocess_args.extend(
+            str(state.fixed_path) for state in self._project_states)
         subprocess.check_call(subprocess_args, cwd=self._superproject_root)
-        return True
+        return ProjectSyncStates(states=project_abs_states, synced=True)
