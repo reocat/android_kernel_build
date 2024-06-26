@@ -37,7 +37,7 @@ class RepoWrapper:
     prebuilts_dir: pathlib.Path | None
     ddk_workspace: pathlib.Path | None
     repo_manifest_of_build: str | None
-    sync: str
+    sync: bool
 
     def run(self) -> bool:
         self._update_manifest()
@@ -139,15 +139,8 @@ class RepoWrapper:
 
     def _do_sync(self) -> bool:
         """Syncs project_paths below superproject_root."""
-        if self.sync == "ask":
-            value = input("Run `repo sync`? (y/N): ")
-            if value.lower() in {"y", "yes"}:
-                self.sync = "true"
-            else:
-                self.sync = "false"
-
-        if self.sync != "true":
-            logging.warning("`repo sync` is skipped.")
+        if not self.sync:
+            logging.warning("`repo sync` is skipped because --nosync.")
             manifest = (self._superproject_root /
                         ".repo/manifests" / _KLEAF_MANIFEST)
             logging.warning(

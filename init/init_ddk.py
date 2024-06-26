@@ -75,7 +75,7 @@ class KleafProjectSetter:
     prebuilts_dir: pathlib.Path | None
     url_fmt: str | None
     superproject_tool: str
-    sync: str
+    sync: bool
 
     def __post_init__(self):
         """Initializes the KleafProjectSetter."""
@@ -583,13 +583,19 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--sync",
-        choices=["true", "false", "ask"],
-        default="ask",
-        help="""Whether to sync Git projects for Kleaf tooling.
+        action="store_true",
+        default=True,
+        help="""Sync Git projects for Kleaf tooling. This is the default.
 
         If --superproject_tool is repo, --sync=false means the program will skip
         running `repo sync`. You should run `repo sync` yourself.
         """,
+    )
+    parser.add_argument(
+        "--nosync",
+        action="store_false",
+        dest="sync",
+        help="""Do not sync Git projects for Kleaf tooling. See --sync.""",
     )
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO,
