@@ -32,7 +32,7 @@ import textwrap
 import urllib.parse
 
 from init.init_errors import KleafProjectSetterError
-from init.repo_wrapper import RepoWrapper
+from init.repo_wrapper import ProjectSyncStates, RepoWrapper
 
 
 _TOOLS_BAZEL = "tools/bazel"
@@ -82,10 +82,10 @@ class KleafProjectSetter:
         self._download_list: dict[str, dict] = {}
         self._repo_manifest_of_build: str | None = None
 
-        # True: Git projects are synced.
-        # False: Git projects are not synced but they should be.
-        # None: Git projects are not synced but they don't need to be.
-        self._projects_synced: bool | None = None
+        # None: Git projects are not synced because they don't need to be.
+        # Not none: (set(original path, fixed up path),
+        #            whether the projects are synced)
+        self._project_sync_states: ProjectSyncStates | None = None
 
     def _symlink_tools_bazel(self):
         """Creates the symlink tools/bazel."""
@@ -159,9 +159,9 @@ class KleafProjectSetter:
         overrides = []
         module_bazel = self.kleaf_repo / _MODULE_BAZEL_FILE
         # Modify path so it is relative to the current DDK workspace.
-        kleaf_repo = self._try_rel_workspace(self.kleaf_repo)
 
-        if self._projects_synced is False:
+        if (self._project_sync_states is not None and
+                not self._project_sync_states.synced):
             state = "out of date" if module_bazel.is_file() else "missing"
             logging.warning(
                 "%s may be %s because you skipped syncing.\n"
@@ -187,12 +187,40 @@ class KleafProjectSetter:
                 elif line.lstrip().startswith(path_attr_prefix):
                     line = line.strip().removeprefix(path_attr_prefix)
                     line = line.removesuffix('",')
-                    line = f'    path = "{kleaf_repo / line}",\n'
+                    line = f'    path = "{self._get_module_path(line)}",\n'
                 section.append(line)
                 if line.strip() == ")":
                     overrides.append("".join(section))
                     section.clear()
         return "".join(overrides)
+
+    def _get_module_path(self, original_module_path_s: str) -> pathlib.Path:
+        if not self.kleaf_repo:
+            raise KleafProjectSetterError(
+                "ERROR: _get_module_path called without --kleaf_repo set!"
+            )
+        original_module_path = pathlib.Path(original_module_path_s)
+        if self._project_sync_states is None:
+            # All projects are below --kleaf_repo. This is usually the case
+            # with --local.
+            kleaf_repo_rel = self._try_rel_workspace(self.kleaf_repo)
+            return kleaf_repo_rel / original_module_path
+
+        for project_state in self._project_sync_states.states:
+            if original_module_path.is_relative_to(project_state.original_path):
+                module_below_git_project = original_module_path.relative_to(
+                    project_state.original_path)
+                return self._try_rel_workspace(
+                    project_state.fixed_abs_path / module_below_git_project)
+
+        kleaf_repo_rel = self._try_rel_workspace(self.kleaf_repo)
+        print(textwrap.dedent(f"""\
+            WARNING: Module path {original_module_path} cannot be fixed because
+                it is not below a Git project in the Git superproject or repo
+                manifest. Blindly fixing it to
+                    {kleaf_repo_rel / original_module_path}
+        """))
+        return kleaf_repo_rel / original_module_path
 
     def _generate_module_bazel(self):
         """Configures the dependencies for the DDK workspace."""
@@ -436,7 +464,7 @@ class KleafProjectSetter:
 
         match self.superproject_tool:
             case "repo":
-                self._projects_synced = RepoWrapper(
+                self._project_sync_states = RepoWrapper(
                     kleaf_repo=self.kleaf_repo,
                     prebuilts_dir=self.prebuilts_dir,
                     ddk_workspace=self.ddk_workspace,
