@@ -120,7 +120,7 @@ class KleafProjectSetterTest(parameterized.TestCase):
                     prebuilts_dir=prebuilts_dir,
                     url_fmt=None,
                     superproject_tool="repo",
-                    sync="false",
+                    sync=False,
                 ).run()
             except:  # pylint: disable=bare-except
                 pass
@@ -144,7 +144,7 @@ class KleafProjectSetterTest(parameterized.TestCase):
                     prebuilts_dir=None,
                     url_fmt=None,
                     superproject_tool="repo",
-                    sync="false",
+                    sync=False,
                 ).run()
             except BaseException as e:  # pylint: disable=bare-except
                 logging.error(e)
@@ -172,7 +172,7 @@ class KleafProjectSetterTest(parameterized.TestCase):
                 prebuilts_dir=prebuilts_dir,
                 url_fmt=None,
                 superproject_tool="repo",
-                sync="false",
+                sync=False,
             ).run()
         except:  # pylint: disable=bare-except
             pass
@@ -221,7 +221,7 @@ class KleafProjectSetterTest(parameterized.TestCase):
                 prebuilts_dir=None,
                 url_fmt=url_fmt,
                 superproject_tool="repo",
-                sync="false",
+                sync=False,
             )._download(
                 remote_filename="remote_file",
                 out_file_name=out_file,
@@ -256,7 +256,7 @@ class KleafProjectSetterTest(parameterized.TestCase):
                     prebuilts_dir=prebuilts_dir,
                     url_fmt=url_fmt,
                     superproject_tool="repo",
-                    sync="false",
+                    sync=False,
                 ).run()
 
     @parameterized.named_parameters(
@@ -303,7 +303,7 @@ local_path_override(
                 prebuilts_dir=None,
                 url_fmt=None,
                 superproject_tool="repo",
-                sync="false",
+                sync=False,
             )._get_local_path_overrides()
             self.assertEqual(got_content, wanted_content)
 
@@ -347,7 +347,7 @@ local_path_override(
                 prebuilts_dir=ddk_workspace / "prebuilts_dir",
                 url_fmt=f"file://{str(remote_prebuilts_dir)}/{{filename}}",
                 superproject_tool="repo",
-                sync="false",
+                sync=False,
             ).run()
 
             with xml.dom.minidom.parse(
