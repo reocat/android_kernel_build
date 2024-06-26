@@ -25,6 +25,7 @@ import xml.dom.minidom
 
 from absl.testing import absltest
 from absl.testing import parameterized
+from repo_wrapper import ProjectAbsState, ProjectSyncStates
 import init_ddk
 
 # pylint: disable=protected-access
@@ -260,52 +261,88 @@ class KleafProjectSetterTest(parameterized.TestCase):
                 ).run()
 
     @parameterized.named_parameters(
-        # (Name, MODULE.bazel in @kleaf, expectation)
-        ("Empty", "", ""),
+        # (Name, MODULE.bazel in @kleaf, ProjectSyncStates, expectation)
+        ("Empty", "", None, ""),
         (
             "Dependencies",
-            """
-local_path_override(
-    module_name = "abseil-py",
-    path = "external/python/absl-py",
-)
-local_path_override(
-    module_name = "apple_support",
-    path = "external/bazelbuild-apple_support",
-)
-        """,
-            """local_path_override(
-    module_name = "abseil-py",
-    path = "kleaf_repo/external/python/absl-py",
-)
-local_path_override(
-    module_name = "apple_support",
-    path = "kleaf_repo/external/bazelbuild-apple_support",
-)\n""",
+            textwrap.dedent("""\
+                local_path_override(
+                    module_name = "abseil-py",
+                    path = "external/python/absl-py",
+                )
+                local_path_override(
+                    module_name = "apple_support",
+                    path = "external/bazelbuild-apple_support",
+                )
+                """),
+            None,
+            textwrap.dedent("""\
+                local_path_override(
+                    module_name = "abseil-py",
+                    path = "kleaf_repo/external/python/absl-py",
+                )
+                local_path_override(
+                    module_name = "apple_support",
+                    path = "kleaf_repo/external/bazelbuild-apple_support",
+                )
+                """),
+        ),
+        (
+            "ProjectSyncStates",
+            textwrap.dedent("""\
+                local_path_override(
+                    module_name = "some_module",
+                    path = "external/some_git_project/some_module",
+                )
+                """),
+            ProjectSyncStates(synced=True, states={
+                ProjectAbsState(
+                    original_path=pathlib.Path("external/some_git_project"),
+                    fixed_abs_path=pathlib.Path(
+                        "ddk_workspace/mapped/external/some_git_project"),
+                )
+            }),
+            textwrap.dedent("""\
+                local_path_override(
+                    module_name = "some_module",
+                    path = "mapped/external/some_git_project/some_module",
+                )
+                """),
         ),
     )
     def test_local_path_overrides_extraction(
-        self, current_content, wanted_content
+        self, current_content: str,
+        project_sync_states: ProjectSyncStates | None,
+        wanted_content: None
     ):
         """Tests extraction of local path overrides works correctly."""
+
         with tempfile.TemporaryDirectory() as tmp:
+            if project_sync_states:
+                project_sync_states.states = {
+                    ProjectAbsState(state.original_path,
+                                    tmp / state.fixed_abs_path)
+                    for state in project_sync_states.states
+                }
             ddk_workspace = pathlib.Path(tmp) / "ddk_workspace"
             kleaf_repo = ddk_workspace / "kleaf_repo"
             kleaf_repo.mkdir(parents=True, exist_ok=True)
             kleaf_repo_module_bazel = kleaf_repo / init_ddk._MODULE_BAZEL_FILE
             kleaf_repo_module_bazel.write_text(current_content)
-            got_content = init_ddk.KleafProjectSetter(
+            project_setter = init_ddk.KleafProjectSetter(
                 build_id=None,
                 build_target=None,
                 ddk_workspace=ddk_workspace,
                 kleaf_repo=kleaf_repo,
-                local=True,
+                local=project_sync_states is None,
                 prebuilts_dir=None,
                 url_fmt=None,
                 superproject_tool="repo",
-                sync=False,
-            )._get_local_path_overrides()
-            self.assertEqual(got_content, wanted_content)
+                sync=project_sync_states is not None,
+            )
+            project_setter._project_sync_states = project_sync_states
+            self.assertEqual(project_setter._get_local_path_overrides(),
+                             wanted_content)
 
     def test_update_manifest(self):
         """Tests that the repo manifest is updated correctly."""
@@ -374,9 +411,7 @@ local_path_override(
                 self.assertCountEqual(
                     project_paths, [
                         pathlib.Path("external/kleaf/build/kernel"),
-                        # TODO(b/291918721): should sync to
-                        #  external/bazel-skylib directly below repo root
-                        pathlib.Path("external/kleaf/external/bazel-skylib"),
+                        pathlib.Path("external/bazel-skylib"),
                     ])
 
                 # Check <linkfile> is fixed
