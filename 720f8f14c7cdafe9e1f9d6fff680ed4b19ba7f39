@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b65d6ae0_f25d5149",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-27T17:02:55Z",
+      "side": 1,
+      "message": "I\u0027m intentionally not relying on this, as it has other dependencies like `--kasan` etc.",
+      "range": {
+        "startLine": 473,
+        "startChar": 4,
+        "endLine": 473,
+        "endChar": 22
+      },
+      "revId": "720f8f14c7cdafe9e1f9d6fff680ed4b19ba7f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
