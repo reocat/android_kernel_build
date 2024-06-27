@@ -19,7 +19,7 @@ Set up your repo manifest to conform with the following filesystem layout.
 <workspace_root>/
     |- WORKSPACE               -> build/kernel/kleaf/bazel.WORKSPACE # Note 1
     |- WORKSPACE.bzlmod        -> build/kernel/kleaf/bzlmod/bazel.WORKSPACE.bzlmod # Note 1
-    |- MODULE.bazel            -> build/kernel/kleaf/bzlmod/bazel.MODULE.bazel
+    |- MODULE.bazel            -> build/kernel/kleaf/bzlmod/bazel.MODULE.bazel # Note 4
     |- build/
     |    `- kernel/
     |- common/
@@ -46,6 +46,15 @@ done with `<linkfile>` in your repo manifest.
 **Note 3**: A list of external repositories are required for bzlmod to work.
 For the up-to-date list, refer to the repo manifest of the correspoding ACK
 branch.
+
+**Note 4**: You may also create your own `MODULE.bazel` file with the following
+content if you need to add more declarations.
+
+```
+include("//build/kernel/kleaf/bzlmod:common.MODULE.bazel")
+
+# More bazel_dep() and local_path_override() goes here
+```
 
 See example manifests for
 [Pixel 6 and Pixel 6 Pro](https://android.googlesource.com/kernel/manifest/+/refs/heads/gs-android-gs-raviole-mainline/default.xml)
