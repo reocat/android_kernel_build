@@ -718,8 +718,10 @@ class BazelWrapper(KleafHelpPrinter):
         self.gen_default_hermetic_path_dir.mkdir(parents=True, exist_ok=True)
 
         host_tools = DEFAULT_HOST_TOOLS + _ACTION_EXTRA_HOST_TOOLS
+        all_tools = set()
         for tool in host_tools:
             dst_path = self.gen_default_hermetic_path_dir / tool
+            all_tools.add(dst_path)
             src_path = shutil.which(tool)
             if src_path:
                 src_path = pathlib.Path(src_path)
@@ -742,13 +744,12 @@ class BazelWrapper(KleafHelpPrinter):
         for tool in _ACTION_HERMETIC_TOOLS:
             tool = pathlib.Path(tool)
             dst_path = self.gen_default_hermetic_path_dir / tool.name
+            all_tools.add(dst_path)
             if dst_path.exists():
                 continue
             src_path = self.kleaf_repo_dir / tool
             dst_path.symlink_to(src_path)
 
-        all_tools = set(self.gen_default_hermetic_path_dir / tool
-                        for tool in (host_tools + _ACTION_HERMETIC_TOOLS))
         for file in self.gen_default_hermetic_path_dir.iterdir():
             if file not in all_tools:
                 file.unlink()
