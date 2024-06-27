@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaf0db8c_cb15ec58",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 806,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-27T19:30:33Z",
+      "side": 1,
+      "message": "This is needed for test targets which don\u0027t specify a value for `kernel_build.trim_nonlisted_kmi`",
+      "range": {
+        "startLine": 804,
+        "startChar": 4,
+        "endLine": 806,
+        "endChar": 48
+      },
+      "revId": "dd5f98be3bb32fc84d3e8b604158c7ecfb5f6d96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
