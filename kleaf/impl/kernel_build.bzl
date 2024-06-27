@@ -469,6 +469,7 @@ def kernel_build(
     if arch == None:
         arch = "arm64"
 
+    trim_nonlisted_kmi_str = str(trim_nonlisted_kmi)
     trim_nonlisted_kmi = trim_nonlisted_kmi_utils.selected_attr(trim_nonlisted_kmi)
 
     internal_kwargs = dict(kwargs)
@@ -492,6 +493,7 @@ def kernel_build(
         kernel_build_arch = arch,
         kernel_build_page_size = page_size,
         kernel_build_sanitizers = sanitizers,
+        kernel_build_trim_nonlisted_kmi = trim_nonlisted_kmi_str,
         **internal_kwargs
     )
 
@@ -741,6 +743,7 @@ def _get_defconfig_fragments(
         kernel_build_arch,
         kernel_build_page_size,
         kernel_build_sanitizers,
+        kernel_build_trim_nonlisted_kmi,
         **internal_kwargs):
     # Use a separate list to avoid .append on the provided object directly.
     # kernel_build_defconfig_fragments could be a list or a select() expression.
@@ -748,7 +751,6 @@ def _get_defconfig_fragments(
         Label("//build/kernel/kleaf:defconfig_fragment"),
         Label("//build/kernel/kleaf/impl/defconfig:debug"),
         Label("//build/kernel/kleaf/impl/defconfig:gcov"),
-        Label("//build/kernel/kleaf/impl/defconfig:gki_module_protection"),
         Label("//build/kernel/kleaf/impl/defconfig:rust"),
         Label("//build/kernel/kleaf/impl/defconfig:zstd_dwarf_compression"),
     ]
@@ -796,6 +798,23 @@ def _get_defconfig_fragments(
         **internal_kwargs
     )
     additional_fragments.append(page_size_target)
+
+    module_protection_target = kernel_build_name + "_defconfig_fragment_module_protection"
+    file_selector(
+        name = module_protection_target,
+        first_selector = select({
+            Label("//build/kernel/kleaf/impl:force_disable_trim_is_true"): "True",
+            "//conditions:default": None,
+        }),
+        second_selector = kernel_build_trim_nonlisted_kmi,
+        files = {
+            Label("//build/kernel/kleaf/impl/defconfig:gki_module_protection_disabled_defconfig"): "False",
+            # If --page_size=default, do not apply any defconfig fragments
+            Label("//build/kernel/kleaf/impl:empty_filegroup"): "True",
+        },
+        **internal_kwargs
+    )
+    additional_fragments.append(module_protection_target)
 
     kernel_build_sanitizer = "default"
     if kernel_build_sanitizers:
