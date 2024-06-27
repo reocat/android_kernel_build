@@ -22,6 +22,7 @@ exports_files([
     "arm64_64k_defconfig",
     "btf_debug_info_disabled_defconfig",
     "btf_debug_info_enabled_defconfig",
+    "gki_module_protection_disabled_defconfig",
 ])
 
 [[
@@ -177,15 +178,6 @@ filegroup(
     name = "gcov",
     srcs = select({
         "//build/kernel/kleaf:gcov_is_true": ["gcov_defconfig"],
-        "//conditions:default": [],
-    }),
-    visibility = ["//visibility:public"],
-)
-
-filegroup(
-    name = "gki_module_protection",
-    srcs = select({
-        "//build/kernel/kleaf:gki_module_protection_disabled": ["gki_module_protection_disabled_defconfig"],
         "//conditions:default": [],
     }),
     visibility = ["//visibility:public"],
