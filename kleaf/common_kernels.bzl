@@ -118,6 +118,7 @@ def _default_target_configs():
         "protected_modules_list": aarch64_protected_modules_list,
         "abi_definition_stg": aarch64_abi_definition_stg,
         "kmi_enforced": bool(aarch64_abi_definition_stg),
+        "kmi_symbol_list_add_only": True if bool(aarch64_kmi_symbol_list) else None,
     }
 
     # Common configs for riscv64
@@ -350,6 +351,7 @@ def define_common_kernels(
     aarch64_protected_modules_list = native.glob(["android/gki_protected_modules"])
     aarch64_protected_modules_list = aarch64_protected_modules_list[0] if aarch64_protected_modules_list else None
     aarch64_trim_and_check = bool(aarch64_kmi_symbol_list) or len(aarch64_additional_kmi_symbol_lists) > 0
+    aarch64_kmi_symbol_list_add_only = True if bool(aarch64_kmi_symbol_list) else None
     default_target_configs = {
         "kernel_aarch64": {
             "kmi_symbol_list": aarch64_kmi_symbol_list,
@@ -358,6 +360,7 @@ def define_common_kernels(
             "protected_modules_list": aarch64_protected_modules_list,
             "trim_nonlisted_kmi": aarch64_trim_and_check,
             "kmi_symbol_list_strict_mode": aarch64_trim_and_check,
+            "kmi_symbol_list_add_only": aarch64_kmi_symbol_list_add_only
         },
         "kernel_aarch64_16k": {
         },
