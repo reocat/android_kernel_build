@@ -28,6 +28,13 @@ load(
 
 visibility("//build/kernel/kleaf/...")
 
+_AARCH64_INIT_DDK_FILES = [
+    # TODO(b/328770706): download_configs.json should be a proper rule to
+    # get the name of the file from :kernel_aarch64_ddk_headers_archive
+    "kernel_aarch64_ddk_headers_archive.tar.gz",
+    "build.config.constants",
+]
+
 # Key: Bazel target name in common_kernels.bzl
 # repo_name: name of download_artifacts_repo in bazel.WORKSPACE
 # outs: list of outs associated with that target name
@@ -116,23 +123,12 @@ CI_TARGET_MAPPING = {
             }
             for item in GKI_ARTIFACTS_AARCH64_OUTS
         } | {
-            # TODO(b/328770706): download_configs.json should be a proper rule to
-            # get the name of the file from :kernel_aarch64_ddk_headers_archive
-            "kernel_aarch64_ddk_headers_archive.tar.gz": {
+            item: {
                 "target_suffix": "init_ddk_files",
                 "mandatory": True,
-                "remote_filename_fmt": "kernel_aarch64_ddk_headers_archive.tar.gz",
-            },
-            "build.config.constants": {
-                "target_suffix": "init_ddk_files",
-                "mandatory": True,
-                "remote_filename_fmt": "build.config.constants",
-            },
-            "manifest.xml": {
-                "target_suffix": "init_ddk_files",
-                "mandatory": False,
-                "remote_filename_fmt": "manifest_{build_number}.xml",
-            },
+                "remote_filename_fmt": item,
+            }
+            for item in _AARCH64_INIT_DDK_FILES
         },
     },
 }
