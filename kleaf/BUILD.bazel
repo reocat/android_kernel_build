@@ -638,7 +638,7 @@ config_setting(
 # If true, drop llvm-strings from hermetic-tools.
 bool_flag(
     name = "remove_strings_from_hermetic_tools",
-    build_setting_default = False,
+    build_setting_default = True,
     visibility = ["//visibility:private"],
 )
 
