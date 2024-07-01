@@ -373,15 +373,8 @@ py_binary(
 # Boostrap tool for DDK development.
 py_binary(
     name = "init_ddk",
-    srcs = [
-        "init/__init__.py",
-        "init/init_ddk.py",
-        "init/init_errors.py",
-        "init/repo_manifest_parser.py",
-        "init/repo_wrapper.py",
-    ],
+    srcs = ["init/init_ddk.py"],
     data = ["init/init_download.py"],
-    imports = ["."],
     main = "init/init_ddk.py",
     visibility = ["//visibility:private"],
 )
@@ -389,9 +382,6 @@ py_binary(
 py_test(
     name = "init_ddk_test",
     srcs = ["init/init_ddk_test.py"],
-    data = [
-        "init/test_data/sample_manifest.xml",
-    ],
     imports = ["init"],
     visibility = ["//visibility:private"],
     deps = [
