@@ -1637,7 +1637,7 @@ def _build_main_action(
         ruledir = ruledir,
         cmd_dir = grab_cmd_step.cmd_dir,
         compile_commands_with_vars = compile_commands_step.compile_commands_with_vars,
-        compile_commands_out_dir = compile_commands_step.compile_commands_out_dir,
+        compile_commands_common_out_dir = compile_commands_step.compile_commands_common_out_dir,
         gcno_outputs = grab_gcno_step.outputs,
         gcno_mapping = grab_gcno_step.gcno_mapping,
         gcno_dir = grab_gcno_step.gcno_dir,
