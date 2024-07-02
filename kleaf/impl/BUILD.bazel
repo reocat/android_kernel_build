@@ -156,7 +156,7 @@ bool_setting(
 
 # If true, also build compile_commands.json and collect necessary files in $OUT_DIR that
 # may be used in compile_commands.json (namely generated source files).
-bool_setting(
+bool_flag(
     name = "build_compile_commands",
     build_setting_default = False,
     # All kernel_* from different packages can see this
