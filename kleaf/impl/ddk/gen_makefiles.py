@@ -68,16 +68,25 @@ def die(*args, **kwargs):
 
 
 def _get_license_str():
-  return textwrap.dedent("""\
-    # SPDX-License-Identifier: GPL-2.0
+    return textwrap.dedent("""\
+      # SPDX-License-Identifier: GPL-2.0
 
-  """)
+    """)
+
+def _get_ddk_marker():
+    return textwrap.dedent("""\
+      KBUILD_OPTIONS += CONFIG_BUILT_WITH_DDK=y
+
+    """)
 
 def _gen_makefile(
         module_symvers_list: list[pathlib.Path],
         output_makefile: pathlib.Path,
 ):
+    # Miscellaneous information
     content = _get_license_str()
+    # This won't be needed in the upstremeable version of the Makefile.
+    content += _get_ddk_marker()
 
     for module_symvers in module_symvers_list:
         content += textwrap.dedent(f"""\
