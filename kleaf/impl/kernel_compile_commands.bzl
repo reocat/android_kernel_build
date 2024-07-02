@@ -46,6 +46,9 @@ def _kernel_compile_commands_impl(ctx):
     compile_commands_with_vars = ctx.attr.kernel_build[KernelBuildInfo].compile_commands_with_vars
     compile_commands_out_dir = ctx.attr.kernel_build[KernelBuildInfo].compile_commands_out_dir
 
+    # FIXME
+    extra = ctx.files.kernel_modules
+
     script = ctx.actions.declare_file(ctx.attr.name + ".sh")
     script_content = hermetic_tools.run_setup + """
         OUTPUT=${{1:-${{BUILD_WORKSPACE_DIRECTORY}}/compile_commands.json}}
@@ -61,7 +64,7 @@ def _kernel_compile_commands_impl(ctx):
     return DefaultInfo(
         executable = script,
         runfiles = ctx.runfiles(
-            files = [compile_commands_with_vars],
+            files = [compile_commands_with_vars] + extra,
             transitive_files = hermetic_tools.deps,
         ),
     )
@@ -74,6 +77,8 @@ kernel_compile_commands = rule(
             mandatory = True,
             doc = "The `kernel_build` rule to extract from.",
             providers = [KernelBuildInfo],
+        ),
+        "kernel_modules": attr.label_list(
         ),
         # Allow any package to use kernel_compile_commands because it is a public API.
         # The ACK source tree may be checked out anywhere; it is not necessarily //common
