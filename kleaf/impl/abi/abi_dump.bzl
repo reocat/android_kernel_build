@@ -72,26 +72,13 @@ def _find_vmlinux(ctx):
         required = True,
     )
 
-# Dependencies to these cheks are needed to fail fast and
-#  to avoid confusions when doing ABI analysis on possibly
-#  not accurate information.
-def _get_build_time_checks(ctx):
-    checks = []
-    kmi_strict_mode_out = ctx.attr.kernel_build[KernelBuildAbiInfo].kmi_strict_mode_out
-    if kmi_strict_mode_out:
-        checks.append(kmi_strict_mode_out)
-    kmi_symbol_list_violations_check_out = ctx.attr.kernel_build[KernelBuildAbiInfo].kmi_symbol_list_violations_check_out
-    if kmi_symbol_list_violations_check_out:
-        checks.append(kmi_symbol_list_violations_check_out)
-    return checks
-
 def _abi_dump_full_stg(ctx):
     hermetic_tools = hermetic_toolchain.get(ctx)
     full_abi_out_file = ctx.actions.declare_file("{}/abi-full.stg".format(ctx.attr.name))
     vmlinux = _find_vmlinux(ctx)
     unstripped_dirs = _unstripped_dirs(ctx)
 
-    inputs = [vmlinux, ctx.file._stg] + _get_build_time_checks(ctx)
+    inputs = [vmlinux, ctx.file._stg]
     inputs += unstripped_dirs
 
     # Collect all modules from all directories
@@ -124,7 +111,7 @@ def _abi_dump_filtered_stg(ctx, full_abi_out_file):
     hermetic_tools = hermetic_toolchain.get(ctx)
     abi_out_file = ctx.actions.declare_file("{}/abi.stg".format(ctx.attr.name))
     combined_abi_symbollist = ctx.attr.kernel_build[KernelBuildAbiInfo].combined_abi_symbollist
-    inputs = [full_abi_out_file] + _get_build_time_checks(ctx)
+    inputs = [full_abi_out_file]
     command = hermetic_tools.setup
 
     if combined_abi_symbollist:
