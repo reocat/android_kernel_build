@@ -808,6 +808,10 @@ def _get_defconfig_fragments(
         name = module_protection_target,
         first_selector = select({
             Label("//build/kernel/kleaf/impl:force_disable_trim_is_true"): "False",
+            Label("//build/kernel/kleaf:debug_is_true"): "False",
+            Label("//build/kernel/kleaf:gcov_is_true"): "False",
+            Label("//build/kernel/kleaf:kasan_is_true"): "False",
+            Label("//build/kernel/kleaf:kcsan_is_true"): "False",
             "//conditions:default": None,
         }),
         second_selector = kernel_build_trim_nonlisted_kmi,
