@@ -74,7 +74,9 @@ EOF
         fi
 
         if [[ $rc == 0 ]]; then
-            echo "INFO: $(cat {error_msg_file})"
+            if [[ -s {error_msg_file} ]]; then
+                echo "INFO: $(cat {error_msg_file})"
+            fi
         elif [[ $rc == {change_code} ]]; then
             echo "{log_level}: ABI DIFFERENCES HAVE BEEN DETECTED!" >&2
             echo "{log_level}: Report summary:" >&2
@@ -116,7 +118,9 @@ EOF
     script_content = """#!/bin/bash -e
         rc=$(cat {exit_code_file})
         if [[ $rc == 0 ]]; then
-            echo "INFO: $(cat {error_msg_file})"
+            if [[ -s {error_msg_file} ]]; then
+                echo "INFO: $(cat {error_msg_file})"
+            fi
         elif [[ $rc == 4 ]]; then
             echo "{log_level}: ABI DIFFERENCES HAVE BEEN DETECTED!" >&2
             echo "{log_level}: Report summary:" >&2
