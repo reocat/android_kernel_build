@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3d008d1_a826ad38",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-07-10T21:53:35Z",
+      "side": 1,
+      "message": "overall lgtm",
+      "revId": "e80d52369fc25d6874105d5b13a0ece9dae6bc2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aaae5d2a_e278106a",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-07-10T21:53:35Z",
+      "side": 1,
+      "message": "nit delete this line\n\nsame below",
+      "revId": "e80d52369fc25d6874105d5b13a0ece9dae6bc2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49adb24b_8f96b8d3",
+        "filename": "kleaf/impl/hermetic_genrule.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-07-10T21:53:35Z",
+      "side": 1,
+      "message": "nit: maybe it is time to rename it toolchain_utils, since it is no longer just for the kernel",
+      "range": {
+        "startLine": 43,
+        "startChar": 17,
+        "endLine": 43,
+        "endChar": 40
+      },
+      "revId": "e80d52369fc25d6874105d5b13a0ece9dae6bc2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2f8af68_d76b7b1f",
+        "filename": "kleaf/impl/hermetic_genrule.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-07-10T21:53:35Z",
+      "side": 1,
+      "message": "nit: this makes the boolean non-configurable. Either document this in L81, or unconditionally define _resolved_toolchain_setup(use_cc_toolchain\u003duse_cc_toolchain), then read the value ctx.attr.use_cc_toolchain in _resolved_toolchain_setup_impl\n\nAlso, if you do the latter, _resolved_toolchain_setup can be merged into _hermetic_genrule_toolchain_setup and _resolved_toolchain_deps can be merged into _hermetic_genrule_toolchain_deps",
+      "range": {
+        "startLine": 96,
+        "startChar": 7,
+        "endLine": 96,
+        "endChar": 23
+      },
+      "revId": "e80d52369fc25d6874105d5b13a0ece9dae6bc2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6064e0c6_2ee51926",
+        "filename": "kleaf/impl/hermetic_genrule.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-07-10T21:53:35Z",
+      "side": 1,
+      "message": "nit:\n\nUnlike the kernel_build() (where we need to cross compile android_arm64/x86_64 binaries, so target_platform is set), here we can always safely assume that this is for host.\n\nIn addition, pedantically, this target should NOT specify any target/exec platforms, but use the target/exec platforms provided by Bazel. That is, for example:\n- if one defines a target that depends on this hermetic_genrule with a transition that changes the exec platform;\n- if one builds a hermetic_genrule with --extra_execution_platforms\n\n... etc.; this target should respect whatever exec platform Bazel thinks the target has, instead of hard-coding //build/kernel/kleaf/impl:linux_x86_64.\n\nCould you please try if this is possible? (low priority though; feel free to just leave a TODO here)",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 69
+      },
+      "revId": "e80d52369fc25d6874105d5b13a0ece9dae6bc2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
