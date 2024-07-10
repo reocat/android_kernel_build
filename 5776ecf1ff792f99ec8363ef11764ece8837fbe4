@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7293e8e_e715d95f",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-07-10T00:06:44Z",
+      "side": 1,
+      "message": "Consider adding a defconfig fragment instead of doing this in KBUILD_OPTIONS",
+      "revId": "5776ecf1ff792f99ec8363ef11764ece8837fbe4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
