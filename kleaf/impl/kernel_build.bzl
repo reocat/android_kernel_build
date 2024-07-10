@@ -812,6 +812,7 @@ def _get_defconfig_fragments(
             Label("//build/kernel/kleaf:gcov_is_true"): "False",
             Label("//build/kernel/kleaf:kasan_is_true"): "False",
             Label("//build/kernel/kleaf:kcsan_is_true"): "False",
+            Label("//build/kernel/kleaf:kgdb_is_true"): "False",
             "//conditions:default": None,
         }),
         second_selector = kernel_build_trim_nonlisted_kmi,
