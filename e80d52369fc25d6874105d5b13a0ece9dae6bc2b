@@ -102,6 +102,30 @@
       },
       "revId": "e80d52369fc25d6874105d5b13a0ece9dae6bc2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f061e8d_d5233588",
+        "filename": "kleaf/impl/hermetic_genrule.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-07-10T21:57:12Z",
+      "side": 1,
+      "message": "In other words, instead of using kernel_toolchain_utils directly, it should probably use this (untested):\n\n```\n\n\ndef _attrs():\n    return {\n        \"_toolchains\": attr.label(\n            default \u003d \"//build/kernel/kleaf/impl:kernel_toolchains\",\n            providers \u003d [KernelEnvToolchainsInfo],\n            cfg \u003d \"exec\", # NOTE EXEC TRANSITION HERE\n        ),\n    }\n\ndef _get_toolchains(ctx):\n    return ctx.attr._toolchains[0][KernelEnvToolchainsInfo]\n\ntoolchains_utils \u003d struct(\n    attrs \u003d _attrs,\n    get \u003d _get_toolchains,\n)\n```",
+      "parentUuid": "6064e0c6_2ee51926",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 69
+      },
+      "revId": "e80d52369fc25d6874105d5b13a0ece9dae6bc2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
