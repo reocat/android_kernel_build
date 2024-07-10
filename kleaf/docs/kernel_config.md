@@ -142,6 +142,10 @@ own defconfig fragments to avoid fragmentation in the ecosystem (pun intended).
 *   `--page_size`
 *   `--rust` / `--norust`
 
+**NOTE**: w.r.t. to KMI, the following flags will disable both `TRIM_UNUSED_KSYMS`
+(by not setting it) and `MODULE_SIG_PROTECT`(by explicitly turning it off):
+(`--notrim`, `--debug`, `--gcov`, `--k*san`, `--kgdb`).
+
 ### User-defined flags
 
 To control `kernel_build.defconfig_fragments` with command line flags,

@@ -60,6 +60,12 @@ development cycle. Usually, these flags should not be set on a release build.
 *   `--nokmi_symbol_list_violations_check`: Disable KMI symbol list violations
     check.
 
+**NOTE**: In addition to `--nokmi_symbol_list_strict_mode` and
+`--nokmi_symbol_list_violations_check` the following list of
+[predefined flags](kernel_config.md#other-pre_defined-flags) also skip the
+symbol list and symbol list violations checks (`--notrim`, `--debug`, `--gcov`,
+`--k*san`, `--kgdb`).
+
 ## Debugging incremental build issues
 
 Incremental build issues refers to issues where actions are executed in an
