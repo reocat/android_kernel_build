@@ -439,6 +439,7 @@ platform(
     ],
     visibility = [
         "//build/kernel/kleaf/tests:__subpackages__",
+        "//build/kernel:__subpackages__",
     ],
 )
 
@@ -459,6 +460,7 @@ platform(
     ],
     visibility = [
         "//build/kernel/kleaf/tests:__subpackages__",
+        "//build/kernel:__subpackages__",
     ],
 )
 
