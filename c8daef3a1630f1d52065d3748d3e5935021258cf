@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "441548f0_2f00f65e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-07-11T01:50:22Z",
+      "side": 1,
+      "message": "I have manually checked that this doesn\u0027t modifies the final output other than fixing up the directory: field accordingly.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 9
+      },
+      "revId": "c8daef3a1630f1d52065d3748d3e5935021258cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4dc8b160_4d91f3c8",
         "filename": "kleaf/impl/kernel_kythe.bzl",
         "patchSetId": 1
