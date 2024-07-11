@@ -243,10 +243,10 @@ def _create_ddk_config_info(ctx):
     ddk_config_deps = split_deps.ddk_configs
 
     transitive_defconfigs = [
+        ctx.attr.kernel_build[KernelBuildExtModuleInfo].ddk_module_defconfig_fragments,
+    ] + [
         dep[DdkConfigInfo].defconfig
         for dep in ddk_config_deps
-    ] + [
-        ctx.attr.kernel_build[KernelBuildExtModuleInfo].ddk_module_defconfig_fragments,
     ]
 
     return DdkConfigInfo(
