@@ -16,11 +16,11 @@
 
 load(
     ":common_providers.bzl",
-    "DdkConfigInfo",
     "KernelBuildExtModuleInfo",
     "KernelSerializedEnvInfo",
 )
 load(":config_utils.bzl", "config_utils")
+load(":ddk_config_subrule.bzl", "ddk_config_subrule")
 load(":debug.bzl", "debug")
 load(":utils.bzl", "kernel_utils", "utils")
 
@@ -240,26 +240,11 @@ def _create_serialized_env_info(ctx, out_dir):
 def _create_ddk_config_info(ctx):
     module_label = Label(str(ctx.label).removesuffix("_config"))
     split_deps = kernel_utils.split_kernel_module_deps(ctx.attr.module_deps, module_label)
-    ddk_config_deps = split_deps.ddk_configs
-
-    transitive_defconfigs = [
-        ctx.attr.kernel_build[KernelBuildExtModuleInfo].ddk_module_defconfig_fragments,
-    ] + [
-        dep[DdkConfigInfo].defconfig
-        for dep in ddk_config_deps
-    ]
-
-    return DdkConfigInfo(
-        kconfig = depset(
-            ctx.files.kconfig,
-            transitive = [dep[DdkConfigInfo].kconfig for dep in ddk_config_deps],
-            order = "postorder",
-        ),
-        defconfig = depset(
-            ctx.files.defconfig,  # this is at most one item
-            transitive = transitive_defconfigs,
-            order = "postorder",
-        ),
+    return ddk_config_subrule(
+        kconfig_targets = [ctx.attr.kconfig],
+        defconfig_targets = [ctx.attr.defconfig],
+        ddk_config_deps = split_deps.ddk_configs,
+        extra_defconfigs = ctx.attr.kernel_build[KernelBuildExtModuleInfo].ddk_module_defconfig_fragments,
     )
 
 ddk_config = rule(
@@ -298,4 +283,5 @@ for its format.
         ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
     },
+    subrules = [ddk_config_subrule],
 )
