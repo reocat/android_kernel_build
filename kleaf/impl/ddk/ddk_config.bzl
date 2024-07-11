@@ -239,7 +239,10 @@ def _create_serialized_env_info(ctx, out_dir):
 
 def _create_ddk_config_info(ctx):
     module_label = Label(str(ctx.label).removesuffix("_config"))
-    split_deps = kernel_utils.split_kernel_module_deps(ctx.attr.module_deps, module_label)
+    split_deps = kernel_utils.split_kernel_module_deps(
+        ctx.attr.module_deps + ctx.attr.module_hdrs + ctx.attr.module_textual_hdrs,
+        module_label,
+    )
     ddk_config_deps = split_deps.ddk_configs
 
     transitive_defconfigs = [
@@ -291,7 +294,10 @@ for its format.
             executable = True,
             cfg = "exec",
         ),
+        # Needed to compose DdkConfigInfo
         "module_deps": attr.label_list(),
+        "module_hdrs": attr.label_list(allow_files = [".h"]),
+        "module_textual_hdrs": attr.label_list(allow_files = True),
         "generate_btf": attr.bool(
             default = False,
             doc = "See [kernel_module.generate_btf](#kernel_module-generate_btf)",
