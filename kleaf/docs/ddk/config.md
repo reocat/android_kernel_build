@@ -38,7 +38,13 @@ following. Earlier items have higher priority.
         [Depsets](https://bazel.build/extending/depsets)).
 - `DEFCONFIG` of the `kernel_build`.
 
-## Example
+## `ddk_config`
+
+You may add `Kconfig` and `defconfig` files to `ddk_config` targets, then
+add the `ddk_config` targets to `ddk_module.deps`. This may be useful if you
+have multiple `Kconfig` / `defconfig` files to be combined.
+
+## Simple Example
 
 ```text
 # tuna/Kconfig.ext: Kconfig of the kernel_build

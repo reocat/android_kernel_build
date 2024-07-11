@@ -42,6 +42,27 @@ Run `checkpatch.sh` at the root of this package.
 | <a id="checkpatch-ignorelist"></a>ignorelist |  checkpatch ignorelist   | <a href="https://bazel.build/concepts/labels">Label</a> | optional |  `"@kleaf//build/kernel/static_analysis:checkpatch_ignorelist"`  |
 
 
+<a id="ddk_config"></a>
+
+## ddk_config
+
+<pre>
+ddk_config(<a href="#ddk_config-name">name</a>, <a href="#ddk_config-deps">deps</a>, <a href="#ddk_config-defconfigs">defconfigs</a>, <a href="#ddk_config-kconfigs">kconfigs</a>)
+</pre>
+
+A fragment config that configures a [`ddk_module`](#ddk_module).
+
+**ATTRIBUTES**
+
+
+| Name  | Description | Type | Mandatory | Default |
+| :------------- | :------------- | :------------- | :------------- | :------------- |
+| <a id="ddk_config-name"></a>name |  A unique name for this target.   | <a href="https://bazel.build/concepts/labels#target-names">Name</a> | required |  |
+| <a id="ddk_config-deps"></a>deps |  Chained `ddk_config` dependency targets.   | <a href="https://bazel.build/concepts/labels">List of labels</a> | optional |  `[]`  |
+| <a id="ddk_config-defconfigs"></a>defconfigs |  The `defconfig` files.   | <a href="https://bazel.build/concepts/labels">Label</a> | optional |  `None`  |
+| <a id="ddk_config-kconfigs"></a>kconfigs |  The `Kconfig` files for this external module.<br><br>See [`Documentation/kbuild/kconfig-language.rst`](https://www.kernel.org/doc/html/latest/kbuild/kconfig.html) for its format.   | <a href="https://bazel.build/concepts/labels">List of labels</a> | optional |  `[]`  |
+
+
 <a id="ddk_headers"></a>
 
 ## ddk_headers
@@ -809,7 +830,7 @@ $(LINUXINCLUDE)
 | <a id="ddk_module-name"></a>name |  Name of target. This should usually be name of the output `.ko` file without the suffix.   |  none |
 | <a id="ddk_module-kernel_build"></a>kernel_build |  [`kernel_build`](#kernel_build)   |  none |
 | <a id="ddk_module-srcs"></a>srcs |  sources and local headers.   |  `None` |
-| <a id="ddk_module-deps"></a>deps |  A list of dependent targets. Each of them must be one of the following:<br><br>- [`kernel_module`](#kernel_module) - [`ddk_module`](#ddk_module) - [`ddk_headers`](#ddk_headers).   |  `None` |
+| <a id="ddk_module-deps"></a>deps |  A list of dependent targets. Each of them must be one of the following:<br><br>- [`kernel_module`](#kernel_module) - [`ddk_module`](#ddk_module) - [`ddk_headers`](#ddk_headers) - [`ddk_config`](#ddk_config)   |  `None` |
 | <a id="ddk_module-hdrs"></a>hdrs |  See [`ddk_headers.hdrs`](#ddk_headers-hdrs)   |  `None` |
 | <a id="ddk_module-textual_hdrs"></a>textual_hdrs |  See [`ddk_headers.textual_hdrs`](#ddk_headers-textual_hdrs)   |  `None` |
 | <a id="ddk_module-includes"></a>includes |  See [`ddk_headers.includes`](#ddk_headers-includes)   |  `None` |
