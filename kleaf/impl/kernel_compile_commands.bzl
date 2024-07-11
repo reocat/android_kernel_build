@@ -20,7 +20,7 @@ load(
 )
 load(
     ":common_providers.bzl",
-    "KernelBuildInfo",
+    "CompileCommandsInfo",
 )
 load(":hermetic_toolchain.bzl", "hermetic_toolchain")
 
@@ -43,25 +43,47 @@ _kernel_compile_commands_transition = transition(
 
 def _kernel_compile_commands_impl(ctx):
     hermetic_tools = hermetic_toolchain.get(ctx)
-    compile_commands_with_vars = ctx.attr.kernel_build[KernelBuildInfo].compile_commands_with_vars
-    compile_commands_common_out_dir = ctx.attr.kernel_build[KernelBuildInfo].compile_commands_common_out_dir
+
+    if ctx.attr.kernel_build:
+        # buildifier: disable=print
+        print("""WARNING: {}: kernel_compile_commands.kernel_build is deprecated. Use deps instead.""".format(
+            ctx.label,
+        ))
 
     script = ctx.actions.declare_file(ctx.attr.name + ".sh")
     script_content = hermetic_tools.run_setup + """
-        OUTPUT=${{1:-${{BUILD_WORKSPACE_DIRECTORY}}/compile_commands.json}}
-        sed -e "s:\\${{COMMON_OUT_DIR}}:${{BUILD_WORKSPACE_DIRECTORY}}/{compile_commands_common_out_dir}:g;s:\\${{ROOT_DIR}}:${{BUILD_WORKSPACE_DIRECTORY}}:g" \\
-            {compile_commands_with_vars} > ${{OUTPUT}}
-        echo "Written to ${{OUTPUT}}"
-    """.format(
-        compile_commands_with_vars = compile_commands_with_vars.short_path,
-        compile_commands_common_out_dir = compile_commands_common_out_dir.path,
-    )
+        OUTPUT=${1:-${BUILD_WORKSPACE_DIRECTORY}/compile_commands.json}
+        echo '[' > ${OUTPUT}
+    """
+
+    direct_runfiles = []
+    for dep in [ctx.attr.kernel_build]:
+        for info in dep[CompileCommandsInfo].infos.to_list():
+
+            # 1d;$d deletes the first line `[` and last line `]`.
+            #   A more robust way would be to parse the JSON list to concatenate them.
+            #   But this is good enough.
+            script_content += """
+                sed -e "1d;$d" \\
+                    -e "s:\\${{COMMON_OUT_DIR}}:${{BUILD_WORKSPACE_DIRECTORY}}/{compile_commands_common_out_dir}:g" \\
+                    -e "s:\\${{ROOT_DIR}}:${{BUILD_WORKSPACE_DIRECTORY}}:g" \\
+                    {compile_commands_with_vars} >> ${{OUTPUT}}
+            """.format(
+                compile_commands_with_vars = info.compile_commands_with_vars.short_path,
+                compile_commands_common_out_dir = info.compile_commands_common_out_dir.path,
+            )
+            direct_runfiles.append(info.compile_commands_with_vars)
+
+    script_content += """
+        echo ']' >> ${OUTPUT}
+        echo "Written to ${OUTPUT}"
+    """
     ctx.actions.write(script, script_content, is_executable = True)
 
     return DefaultInfo(
         executable = script,
         runfiles = ctx.runfiles(
-            files = [compile_commands_with_vars],
+            files = direct_runfiles,
             transitive_files = hermetic_tools.deps,
         ),
     )
@@ -73,7 +95,7 @@ kernel_compile_commands = rule(
         "kernel_build": attr.label(
             mandatory = True,
             doc = "The `kernel_build` rule to extract from.",
-            providers = [KernelBuildInfo],
+            providers = [CompileCommandsInfo],
         ),
         # Allow any package to use kernel_compile_commands because it is a public API.
         # The ACK source tree may be checked out anywhere; it is not necessarily //common
