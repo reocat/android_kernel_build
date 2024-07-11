@@ -26,7 +26,7 @@ load(":utils.bzl", "kernel_utils", "utils")
 
 visibility("//build/kernel/kleaf/...")
 
-def _ddk_config_impl(ctx):
+def _ddk_module_config_impl(ctx):
     out_dir = ctx.actions.declare_directory(ctx.attr.name + "/out_dir")
     ddk_config_info = _create_ddk_config_info(ctx)
 
@@ -262,8 +262,8 @@ def _create_ddk_config_info(ctx):
         ),
     )
 
-ddk_config = rule(
-    implementation = _ddk_config_impl,
+ddk_module_config = rule(
+    implementation = _ddk_module_config_impl,
     doc = "A target that configures a [`ddk_module`](#ddk_module).",
     attrs = {
         "kernel_build": attr.label(
