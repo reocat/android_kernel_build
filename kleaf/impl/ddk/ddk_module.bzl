@@ -372,6 +372,8 @@ def ddk_module(
         kconfig = kconfig,
         kernel_build = kernel_build,
         module_deps = deps,
+        module_hdrs = hdrs,
+        module_textual_hdrs = textual_hdrs,
         generate_btf = generate_btf,
     )
 

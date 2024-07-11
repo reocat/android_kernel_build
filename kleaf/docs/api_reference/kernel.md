@@ -47,7 +47,7 @@ Run `checkpatch.sh` at the root of this package.
 ## ddk_headers
 
 <pre>
-ddk_headers(<a href="#ddk_headers-name">name</a>, <a href="#ddk_headers-hdrs">hdrs</a>, <a href="#ddk_headers-includes">includes</a>, <a href="#ddk_headers-linux_includes">linux_includes</a>, <a href="#ddk_headers-textual_hdrs">textual_hdrs</a>)
+ddk_headers(<a href="#ddk_headers-name">name</a>, <a href="#ddk_headers-hdrs">hdrs</a>, <a href="#ddk_headers-defconfigs">defconfigs</a>, <a href="#ddk_headers-includes">includes</a>, <a href="#ddk_headers-kconfigs">kconfigs</a>, <a href="#ddk_headers-linux_includes">linux_includes</a>, <a href="#ddk_headers-textual_hdrs">textual_hdrs</a>)
 </pre>
 
 A rule that exports a list of header files to be used in DDK.
@@ -86,7 +86,9 @@ ddk_headers(
 | :------------- | :------------- | :------------- | :------------- | :------------- |
 | <a id="ddk_headers-name"></a>name |  A unique name for this target.   | <a href="https://bazel.build/concepts/labels#target-names">Name</a> | required |  |
 | <a id="ddk_headers-hdrs"></a>hdrs |  One of the following:<br><br>- Local header files to be exported. You may also need to set the `includes` attribute. - Other `ddk_headers` targets to be re-exported.   | <a href="https://bazel.build/concepts/labels">List of labels</a> | optional |  `[]`  |
+| <a id="ddk_headers-defconfigs"></a>defconfigs |  `defconfig` files.<br><br>Items must already be declared in `kconfigs`. An item not declared in Kconfig and inherited Kconfig files is silently dropped.<br><br>An item declared in `kconfigs` without a specific value in `defconfigs` uses default value specified in `kconfigs`.   | <a href="https://bazel.build/concepts/labels">List of labels</a> | optional |  `[]`  |
 | <a id="ddk_headers-includes"></a>includes |  A list of directories, relative to the current package, that are re-exported as include directories.<br><br>[`ddk_module`](#ddk_module) with `deps` including this target automatically adds the given include directory in the generated `Kbuild` files.<br><br>You still need to add the actual header files to `hdrs`.   | List of strings | optional |  `[]`  |
+| <a id="ddk_headers-kconfigs"></a>kconfigs |  Kconfig files.<br><br>See [`Documentation/kbuild/kconfig-language.rst`](https://www.kernel.org/doc/html/latest/kbuild/kconfig.html) for its format.<br><br>Kconfig is optional for a `ddk_module`. The final Kconfig known by this module consists of the following:<br><br>- Kconfig from `kernel_build` - Kconfig from dependent modules, if any - Kconfig of this module, if any   | <a href="https://bazel.build/concepts/labels">List of labels</a> | optional |  `[]`  |
 | <a id="ddk_headers-linux_includes"></a>linux_includes |  Like `includes` but specified in `LINUXINCLUDES` instead.<br><br>Setting this attribute allows you to override headers from `${KERNEL_DIR}`. See "Order of includes" in [`ddk_module`](#ddk_module) for details.   | List of strings | optional |  `[]`  |
 | <a id="ddk_headers-textual_hdrs"></a>textual_hdrs |  The list of header files to be textually included by sources.<br><br>This is the location for declaring header files that cannot be compiled on their own; that is, they always need to be textually included by other source files to build valid code.   | <a href="https://bazel.build/concepts/labels">List of labels</a> | optional |  `[]`  |
 
