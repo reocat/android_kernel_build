@@ -25,6 +25,32 @@
       "tag": "",
       "revId": "f6c528b5402eec71d6361a0d04e065ba885f3f85",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000084172058",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/3168940?revision\u003d1",
+      "key": {
+        "uuid": "56dbe697_159e69b3",
+        "filename": "kleaf/impl/ddk/ddk_config_subrule.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2024-07-11T21:02:06Z",
+      "side": 1,
+      "message": "syntax error near order",
+      "range": {
+        "startLine": 40,
+        "startChar": 18,
+        "endLine": 40,
+        "endChar": 18
+      },
+      "tag": "",
+      "revId": "f6c528b5402eec71d6361a0d04e065ba885f3f85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
