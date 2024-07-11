@@ -1,0 +1,42 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000084191472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/3168940?revision\u003d2",
+      "key": {
+        "uuid": "a5ea53ba_9623d220",
+        "filename": "kleaf/impl/ddk/ddk_config_subrule.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2024-07-11T23:03:19Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/ddk/ddk_config_subrule.bzl` to format the file, or apply the suggested fix.",
+      "tag": "",
+      "fixSuggestions": [
+        {
+          "fixId": "cf4edd9b_a8b28ae7",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/ddk/ddk_config_subrule.bzl",
+              "range": {
+                "startLine": 23,
+                "startChar": 0,
+                "endLine": 24,
+                "endChar": 0
+              },
+              "replacement": "        subrule_ctx,  # buildifier: disable\u003dunused-variable\n"
+            }
+          ]
+        }
+      ],
+      "revId": "338733c7fe6e8d9c6891bf8a20220608598fd154",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
